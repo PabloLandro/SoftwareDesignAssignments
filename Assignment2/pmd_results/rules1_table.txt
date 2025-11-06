@@ -1,0 +1,107 @@
+\begin{table}[h!]
+\centering
+\begin{tabular}{lcr}
+\toprule
+Pattern & Count \\ 
+\midrule
+TooManyMethods & 2433 \\
+ClassWithOnlyPrivateConstructorsShouldBeFinal & 742 \\
+CouplingBetweenObjects & 635 \\
+LooseCoupling & 9484 \\
+RedundantFieldInitializer & 536 \\
+UnitTestShouldUseTestAnnotation & 34862 \\
+AvoidThrowingRawExceptionTypes & 380 \\
+ImplicitFunctionalInterface & 398 \\
+CyclomaticComplexity & 712 \\
+UseVarargs & 1177 \\
+SimplifyBooleanReturns & 109 \\
+AvoidThrowingNullPointerException & 229 \\
+GodClass & 522 \\
+GuardLogStatement & 112 \\
+UseUtilityClass & 18 \\
+ExcessiveImports & 356 \\
+ExcessivePublicCount & 260 \\
+AvoidUncheckedExceptionsInSignatures & 102 \\
+NcssCount & 62 \\
+CognitiveComplexity & 523 \\
+NPathComplexity & 64 \\
+UseCollectionIsEmpty & 84 \\
+UnusedAssignment & 226 \\
+AvoidReassigningParameters & 838 \\
+CollapsibleIfStatements & 42 \\
+AvoidInstantiatingObjectsInLoops & 1476 \\
+DataClass & 36 \\
+JUnit4SuitesShouldUseSuiteAnnotation & 346 \\
+ReplaceVectorWithList & 13 \\
+UseArrayListInsteadOfVector & 8 \\
+ReplaceHashtableWithMap & 3 \\
+LawOfDemeter & 3652 \\
+AbstractClassWithoutAnyMethod & 119 \\
+SingularField & 15 \\
+LiteralsFirstInComparisons & 332 \\
+ExceptionAsFlowControl & 40 \\
+DoNotExtendJavaLangError & 31 \\
+UnitTestShouldIncludeAssert & 3402 \\
+AvoidDeeplyNestedIfStmts & 247 \\
+SignatureDeclareThrowsException & 885 \\
+PreserveStackTrace & 133 \\
+OptimizableToArrayCall & 34 \\
+PrimitiveWrapperInstantiation & 150 \\
+ImmutableField & 18 \\
+UnitTestContainsTooManyAsserts & 12504 \\
+JUnitUseExpected & 105 \\
+MutableStaticState & 32 \\
+AbstractClassWithoutAbstractMethod & 146 \\
+UselessOverridingMethod & 135 \\
+ExcessiveParameterList & 221 \\
+ForLoopCanBeForeach & 91 \\
+FinalFieldCouldBeStatic & 32 \\
+StringToString & 3 \\
+ConsecutiveAppendsShouldReuse & 36 \\
+UseStringBufferLength & 15 \\
+ForLoopVariableCount & 81 \\
+AvoidReassigningLoopVariables & 104 \\
+SystemPrintln & 27 \\
+AvoidMessageDigestField & 9 \\
+ArrayIsStoredDirectly & 116 \\
+StringInstantiation & 53 \\
+AddEmptyString & 99 \\
+UseStandardCharsets & 30 \\
+AvoidArrayLoops & 14 \\
+ConsecutiveLiteralAppends & 8 \\
+AppendCharacterWithChar & 53 \\
+MethodReturnsInternalArray & 63 \\
+UseEnumCollections & 20 \\
+UselessStringValueOf & 5 \\
+InefficientStringBuffering & 5 \\
+UnnecessaryVarargsArrayCreation & 69 \\
+TooFewBranchesForSwitch & 24 \\
+NonExhaustiveSwitch & 21 \\
+AvoidStringBufferField & 6 \\
+UseTryWithResources & 123 \\
+AvoidFileStream & 45 \\
+OneDeclarationPerLine & 11 \\
+TooManyFields & 9 \\
+AvoidUsingHardCodedIP & 720 \\
+UnusedPrivateMethod & 15 \\
+UnusedPrivateField & 12 \\
+UnusedLocalVariable & 15 \\
+UseObjectForClearerAPI & 3 \\
+DoubleBraceInitialization & 12 \\
+AvoidPrintStackTrace & 3 \\
+MissingOverride & 38 \\
+SwitchDensity & 10 \\
+InsufficientStringBufferDeclaration & 20 \\
+AvoidThrowingNewInstanceOfSameException & 5 \\
+ExhaustiveSwitchHasDefault & 15 \\
+LogicInversion & 5 \\
+LabeledStatement & 8 \\
+UseStringBufferForStringAppends & 36 \\
+SimplifiedTernary & 4 \\
+UnnecessaryWarningSuppression & 5 \\
+ & 1 \\
+\bottomrule
+\end{tabular}
+\caption{Design Patterns reported by Pattern4J.}
+\label{tab:patterns}
+\end{table}
