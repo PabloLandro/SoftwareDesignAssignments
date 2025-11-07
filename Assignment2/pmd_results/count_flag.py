@@ -1,5 +1,5 @@
 
-RULES_FILE = "rulescore.txt"
+RULES_FILE = "core_design.txt"
 
 tableStart = """\\begin{table}[h!]
 \\centering

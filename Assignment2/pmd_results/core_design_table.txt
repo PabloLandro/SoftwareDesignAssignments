@@ -1,0 +1,42 @@
+\begin{table}[h!]
+\centering
+\begin{tabular}{lcr}
+\toprule
+Pattern & Count \\ 
+\midrule
+LawOfDemeter & 463 \\
+TooManyMethods & 289 \\
+CyclomaticComplexity & 110 \\
+CouplingBetweenObjects & 83 \\
+CognitiveComplexity & 83 \\
+GodClass & 59 \\
+AvoidDeeplyNestedIfStmts & 53 \\
+SignatureDeclareThrowsException & 37 \\
+AvoidThrowingNullPointerException & 30 \\
+ExcessiveImports & 30 \\
+ExcessiveParameterList & 30 \\
+UselessOverridingMethod & 26 \\
+SimplifyBooleanReturns & 21 \\
+AvoidThrowingRawExceptionTypes & 15 \\
+AbstractClassWithoutAnyMethod & 8 \\
+NPathComplexity & 8 \\
+ClassWithOnlyPrivateConstructorsShouldBeFinal & 7 \\
+DataClass & 6 \\
+CollapsibleIfStatements & 6 \\
+ExcessivePublicCount & 5 \\
+NcssCount & 4 \\
+SwitchDensity & 2 \\
+MutableStaticState & 1 \\
+TooManyFields & 1 \\
+AvoidThrowingNewInstanceOfSameException & 1 \\
+AvoidUncheckedExceptionsInSignatures & 1 \\
+LogicInversion & 1 \\
+UseUtilityClass & 1 \\
+ExceptionAsFlowControl & 1 \\
+DoNotExtendJavaLangError & 1 \\
+ & 1 \\
+\bottomrule
+\end{tabular}
+\caption{Design Patterns reported by Pattern4J.}
+\label{tab:patterns}
+\end{table}
