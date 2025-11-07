@@ -107,11 +107,7 @@ We can create a profile that tracks only these three types of code smells.
 
 \subsection{PMD}
 
-With PMD we are able to get a .txt result in which each line corresponds to a specific occurrence of a flaw. It is easy to implement a Python script which counts how many occurrences were found for each of the rules. We find a total of $12.689$ flaws in all of the project out of 36 types of flaws.
-
-This amounts to $63\%$ of the total flaws. This is partly due because we are running the analysis over all the Guava modules.
-
-After reapeating the analysis with the same rules only over just the Core library we find $1.384$ flaws of $31$ different types, which we can see in Table~\ref{tab:pmd_flaws}.
+After running the analysis with \texttt{PMD} with the mentioned rule set over the core module we find $1.384$ flaws of $31$ different types, which we can see in Table~\ref{tab:pmd_flaws}.
 
 \begin{table}[h!]
 \centering
@@ -149,7 +145,6 @@ LogicInversion & 1 \\
 UseUtilityClass & 1 \\
 ExceptionAsFlowControl & 1 \\
 DoNotExtendJavaLangError & 1 \\
- & 1 \\
 \bottomrule
 \end{tabular}
 \caption{Flaws found by PMD.}
@@ -158,7 +153,35 @@ DoNotExtendJavaLangError & 1 \\
 
 \subsection{SonarQube}
 
-\section{False positives}
+\begin{itemize}
+  \item Design smells (91 total): These indicate structural or architectural problems that can make the code harder to maintain or extend. Of these, 29 were classified as \textbf{critical} and 62 as \textbf{major}, suggesting several classes exhibit high complexity, excessive coupling, or poor cohesion.
+  
+  \item Brain-overload issues (130 total): This category captures code that is mentally difficult to understand due to complexity, deep nesting, or long methods. Among these, 69 were \textbf{critical} and 46 \textbf{major}, pointing to sections of the code that require significant cognitive effort to read and comprehend.
+  
+  \item Confusing code smells (90 total): These highlight code that is ambiguous, misleading, or error-prone due to naming, duplicated logic, or unexpected side effects. The analysis found 17 \textbf{blocker}, 3 \textbf{critical}, 44 \textbf{major}, and 26 \textbf{minor} issues, indicating that several areas of the code could lead to misunderstandings or mistakes during maintenance.
+\end{itemize}
+
+Overall, these results provide a quantitative overview of the codebase's maintainability, complexity, and clarity, and can help prioritize areas for refactoring. 
+
+The most relevant rule violations are summarized in Table~\ref{tab:sonar_flaws}. Notably, Cognitive Complexity appears most frequently, highlighting methods that are difficult to understand and may benefit from decomposition. Other common issues include deep inheritance trees, methods with too many arguments, and private methods accessed only by inner classes, all of which point to potential design or structural problems. Duplicate method implementations, although less frequent, can also affect maintainability and indicate opportunities for refactoring.
+
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{lcr}
+\toprule
+Flaw & Count \\ 
+\midrule
+Cognitive Complexity & 69 \\
+Inheritance Tree too deep & 48 \\
+Method with too many arguments & 41 \\
+Private methods called only by inner Class & 21 \\
+Methods with duplicate implementations & 4 \\
+\bottomrule
+\end{tabular}
+\caption{Flaws found by PMD.}
+\label{tab:sonar_flaws}
+\end{table}
 
 \section{Qualitative discussion}
 
@@ -170,7 +193,7 @@ The most software flaws that were found were vilations of \textbf{Law of Demeter
 
 The \textbf{Law of Demeter} is a design principle that states that a method should only communicate with its immediate collaborators, its own fields, method parameters, or directly created objects. A violation occurs when code chains multiple method calls across different objects, indicating that the class depends on the internal structure of other objects.  
 
-\textbf{PMD} detects such violations by analyzing call chains and identifying cases where methods access members of objects returned by other methods, revealing excessive coupling and a breach of encapsulation.
+\texttt{PMD} detects such violations by analyzing call chains and identifying cases where methods access members of objects returned by other methods, revealing excessive coupling and a breach of encapsulation.
 
 \subsubsection{High Coupling}
 
@@ -192,10 +215,37 @@ These metrics are defined as follows:
 
 These design flaws can be identified by measuring method dependencies or class complexity, at which \texttt{PMD} is very effective. However, other issues, such as poorly implemented patterns, Poltergeist classes, or Shotgun Surgery are more contextual and depend on design intent. These require human judgment and architectural understanding rather than purely metric-based detection.
 
+\subsection{SonarQube}
 
-\section{Comparison of the tools}
+While SonarQube's graphical interface makes it much easier to filter and explore the different categories of flaws and their associated labels, we observe that, similar to \texttt{PMD}, many of these labels are primarily metric-based. They rely on mechanical counts such as the number of methods, number of parent classes, or cognitive complexity, rather than capturing deeper contextual or architectural issues.
 
-\section{Project assesment}
+From a qualitative perspective, the most prominent issues identified include:
 
+\begin{itemize}
+    \item Cognitive Complexity: Methods flagged under this category are often long and deeply nested, making them difficult to understand and maintain. Refactoring these methods into smaller, more focused units would improve readability and reduce cognitive load for developers.
+    \item Inheritance Tree Too Deep: Classes that inherit from many levels of parent classes can be harder to understand and modify, as behavior may be spread across multiple layers. This can indicate overly complex hierarchies and a need to simplify or flatten inheritance.
+    \item Methods with Too Many Arguments: Methods with a large number of parameters are harder to use and test, and may indicate that the method is trying to perform multiple responsibilities. Splitting such methods can modularity.
+    \item Private Methods Called Only by Inner Classes: These situations suggest tight coupling between the outer and inner classes. While sometimes unavoidable, this pattern can make the code harder to maintain and may indicate a need to rethink class responsibilities.
+    \item Duplicate Implementations: Duplicate methods increase maintenance overhead and the risk of inconsistencies. Consolidating duplicate code can reduce redundancy and improve maintainability.
+\end{itemize}
+
+\section{False positives}
+
+In our analysis, no false positives were detected. This is unsurprising, as the rules used by both \texttt{PMD} and \texttt{SonarQube} are largely static and metric-based. Each reported issue corresponds to a measurable property of the code, such as high method count, excessive coupling, or cognitive complexity, making it very unlikely for the tools to flag incorrect or irrelevant violations.
+
+
+\section{Comparison of the Tools}
+
+In our analysis, \texttt{PMD} identified a larger number of flaws compared to SonarQube. One reason for this is that PMD includes several rules that capture more nuanced design issues, such as God Classes, violations of the Law of Demeter, and high coupling between objects. These rules go beyond simple counts of methods or arguments, providing deeper insight into the structure and maintainability of the code.
+
+\texttt{SonarQube}, on the other hand, categorizes issues into clear types like code smells, bugs, and vulnerabilities. While many of its rules are metric-based, such as counting the number of method parameters or inheritance depth, they are somewhat less sophisticated in detecting higher-level design problems compared to PMD.
+
+\section{Project Assessment}
+
+Based on the analysis with both \texttt{PMD} and \texttt{SonarQube}, we observe that Guava contains a noticeable number of \texttt{God Classes} with a large number of methods. These classes often centralize a significant portion of the library's functionality, resulting in high complexity, extensive coupling, and cognitive load.
+
+However, this pattern is not necessarily a flaw in the context of Guava. As a library designed to provide robust data structures and utility tools, it is expected that certain classes serve as comprehensive, feature-rich components. The high method count and complexity reflect the library's goal of offering a wide range of functionality in a single, cohesive API, rather than poor design practices.
+
+Overall, while the tools highlight areas that would be concerning in typical application code, in the context of a mature, well-maintained library like Guava, these design characteristics are largely justified. The results provide useful insights into maintainability and potential refactoring points, but they should be interpreted with the understanding of the library's intended purpose and scope.
 
 \end{document}
