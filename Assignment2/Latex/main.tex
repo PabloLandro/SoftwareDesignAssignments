@@ -16,7 +16,7 @@
 	\vspace{25pt} % Whitespace
 	\rule{\linewidth}{0.5pt}\\ % Thin top horizontal rule
 	\vspace{20pt} % Whitespace
-	{\huge Documenting Design Patterns}\\ % The assignment title
+	{\huge Evaluating the Design of a Project }\\ % The assignment title
 	\vspace{12pt} % Whitespace
 	\rule{\linewidth}{2pt}\\ % Thick bottom horizontal rule
 	\vspace{12pt} % Whitespace
@@ -43,11 +43,8 @@ We part from the projects we saw for the last assignment, those are:
 \item \texttt{Termux}: Terminal emulator and Linux environment app for Android.
 \end{itemize}
 
-From those projects, the only ones that could be built easily without importing many dependencies were \texttt{Kafka} and \texttt{Guava}. In the other assignment we discarded \texttt{Kafka} because the pattern detection tool failed to detect any patterns, but it may prove useful for this task.
+Among the projects considered, the only ones that could be built easily without importing numerous dependencies were \texttt{Kafka} and \texttt{Guava}. However, since we were unable to run the SonarQube analysis on \texttt{Kafka}, we focused our study on \texttt{Guava} which allows us to use both tools.
 
-Kafka doesn't wark with SonarQube.
-
-After using PMD with \texttt{Guava} we obtain a very big \texttt{html} file with a table of approximately $79.000$ rows, each corresponding to a specific line in a .java file.
 
 \section{Modules Analyzed}
 
