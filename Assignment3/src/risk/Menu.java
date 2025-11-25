@@ -405,15 +405,15 @@ public class Menu {
                         throw (error);
                 }
             } catch (CardException error) {
-                error.PrintError();
+                error.printError();
             } catch (PlayerException error) {
-                error.PrintError();
+                error.printError();
             } catch (GeoException error) {
-                error.PrintError();
+                error.printError();
             } catch (CommandException error) {
-                error.PrintError();
+                error.printError();
             } catch (MissionException error) {
-                error.PrintError();
+                error.printError();
             }
         } while (!orden.equals("quit"));
     }
@@ -504,9 +504,9 @@ public class Menu {
                     try {
                         assignCountries(parts[0], parts[1]);
                     } catch (PlayerException error) {
-                        error.PrintError();
+                        error.printError();
                     } catch (GeoException error) {
-                        error.PrintError();
+                        error.printError();
                     }
                 }
             } catch (IOException excepcion) {
@@ -569,9 +569,9 @@ public class Menu {
                 try {
                     assignMissions(parts[0], parts[1]);
                 } catch (PlayerException error) {
-                    error.PrintError();
+                    error.printError();
                 } catch (MissionException error) {
-                    error.PrintError();
+                    error.printError();
                 }
             }
         } catch (IOException excepcion) {
@@ -666,9 +666,9 @@ public class Menu {
                 try {
                     crearPlayer(parts[0], parts[1]);
                 } catch (GeoException error) {
-                    error.PrintError();
+                    error.printError();
                 } catch (PlayerException error) {
-                    error.PrintError();
+                    error.printError();
                 }
             }
         } catch (IOException excepcion) {
@@ -856,7 +856,7 @@ public class Menu {
             combinacion = maximoCambio(turnPlayer);
             changeCards(turnPlayer, combinacion.get(0), combinacion.get(1), combinacion.get(2));
         } catch (CardException excepcion) {
-            excepcion.PrintError();
+            excepcion.printError();
         };
 
     }

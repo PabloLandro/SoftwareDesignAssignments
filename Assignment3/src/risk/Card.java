@@ -23,7 +23,7 @@ public abstract class Card {
     }
     
 
-    abstract int getPower();
+    abstract int getRearm();
     
     public String getName(){
         return new String(type + "&" + country.getAbreviatura());
@@ -43,9 +43,9 @@ public abstract class Card {
         out = out + "countryAsociado: \"" + country.getName() + "\"\n";
         out = out + "perteneceAPlayer: \"" + player.getName() + "\"\n";
         if(player.getCountries().contains(country))
-            out = out + "armysDeRearme: " + (getPower()+1) + "\n}";
+            out = out + "armysDeRearme: " + (getRearm()+1) + "\n}";
         else
-            out = out + "armysDeRearme: " + getPower() + "\n}";
+            out = out + "armysDeRearme: " + getRearm() + "\n}";
         return out;
     }
     
