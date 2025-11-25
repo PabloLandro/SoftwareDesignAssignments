@@ -9,10 +9,14 @@ package risk;
  *
  * @author landr
  */
-public abstract class ArmyCompuesto extends Army{
+public class Rifleman extends Infantry{
     
-    public ArmyCompuesto(){
-        super();
+    public Rifleman(Country country, Player player){
+        super(country, "Rifleman", player);
     }
-    
+
+    @Override
+    int getRearm() {
+        return 2;
+    }    
 }

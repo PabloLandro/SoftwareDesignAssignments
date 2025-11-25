@@ -9,9 +9,9 @@ package risk;
  *
  * @author landr
  */
-public abstract class ArmyCompuesto extends Army{
+public abstract class BaseArmy extends Army{
     
-    public ArmyCompuesto(){
+    public BaseArmy(){
         super();
     }
     

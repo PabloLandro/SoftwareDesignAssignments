@@ -9,10 +9,15 @@ package risk;
  *
  * @author landr
  */
-public abstract class ArmyCompuesto extends Army{
+public class OfHorse extends Cavalry{
     
-    public ArmyCompuesto(){
-        super();
+    public OfHorse(Country country, Player player){
+        super(country, "OfHorse", player);
+    }
+
+    @Override
+    int getRearm() {
+        return 3;
     }
     
 }

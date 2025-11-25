@@ -9,10 +9,9 @@ package risk;
  *
  * @author landr
  */
-public abstract class ArmyCompuesto extends Army{
+public interface Console {
     
-    public ArmyCompuesto(){
-        super();
-    }
+    public void Print(String message);
+    public String read();
     
 }

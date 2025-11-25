@@ -9,10 +9,10 @@ package risk;
  *
  * @author landr
  */
-public abstract class ArmyCompuesto extends Army{
-    
-    public ArmyCompuesto(){
-        super();
+public abstract class Infantry extends Card{
+
+    public Infantry(Country country, String type, Player player){
+        super(country, type, player);
     }
     
 }

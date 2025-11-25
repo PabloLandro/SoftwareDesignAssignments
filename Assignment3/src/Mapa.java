@@ -12,38 +12,38 @@ import java.util.ArrayList;
  */
 public class Mapa {
     
-    //Guardamos todas las casillas en un ArrayList
-    ArrayList <Casilla> casillas;
+    //Guardamos all las casillas en un ArrayList
+    ArrayList <Tile> casillas;
     
-    public ArrayList getCasillas()
+    public ArrayList getTiles()
     {
         return casillas;
     }
     
     public Mapa()
     {
-        casillas = new ArrayList<Casilla>();
+        casillas = new ArrayList<Tile>();
     }
 
-    //Imprimimos el mapa por pantalla
+    //Imprimimos el map por pantalla
     public void verMapa()
     {
         System.out.println("\nMapa");
         //Imprimimos una línea de guiones al principio
-        imprimirLinea(0);
+        printLinea(0);
         
         //Usamos un for para recorrer las 8 filas
         for(int i = 1; i <= 8; i++)
         {
-            //Imprimimos la línea con los nombre de países, el índice nos sirve
-            //para obtener los países adecuados
-            imprimirLineaPais(i);
+            //Imprimimos la línea con los name de países, el índice nos sirve
+            //para get los países adecuados
+            printLineaCountry(i);
             
             //Imprimimos la línea con el número de ejércitos de cada país
-            imprimirLineaEjercitos(i);
+            printLineaArmies(i);
             
             //Imprimimos una línea de guiones
-            imprimirLinea(i);
+            printLinea(i);
         }
         
     }
@@ -52,21 +52,21 @@ public class Mapa {
     //FUNCIONES AUXILIARES DE VER MAPA
     
     //Línea de guiones
-    void imprimirLinea(int linea)
+    void printLinea(int line)
     {
         System.out.print("\n|");
         for(int i = 0; i < 11; i++){
-            if((linea == 5) && (i == 3))
+            if((line == 5) && (i == 3))
                 System.out.print("===========" + "\033[0;31m" + "|" + "\033[0m");
             else
                 System.out.print("===========|");
         }
     }
     
-    String colorPais(Pais pais)
+    String colorCountry(Country country)
     {
         
-        switch(pais.getContinente().getColor())
+        switch(country.getContinent().getColor())
         {
             case "ROJO":
                 return "\033[41m";
@@ -92,8 +92,8 @@ public class Mapa {
         
     }
     
-    //Línea con nombres de países
-    void imprimirLineaPais(int linea)
+    //Línea con names de países
+    void printLineaCountry(int line)
     {
         System.out.print("\n|");
         
@@ -102,31 +102,31 @@ public class Mapa {
         for(int i = 1; i <= 11; i++)
         {
             //Buscamos el país en la posición en la que nos encontramos
-            Pais pais = buscarPais(i, linea);
+            Country country = buscarCountry(i, line);
             //En caso de no existir un país (la casilla es agua), imprimimos una
             //casilla vacía
-            if(pais != null)
+            if(country != null)
             {
-                //Substring para asegurarnos todos los paises tienen longitud 9 caracteres
-                if(pais.getAbreviatura().length() > 9)
-                    System.out.print(" " + String.format(colorPais(pais) + "%-9s" + "\033[0m" , pais.getAbreviatura().substring(0, 9)));
+                //Substring para asegurarnos todos los countries tienen longitud 9 caracteres
+                if(country.getAbreviatura().length() > 9)
+                    System.out.print(" " + String.format(colorCountry(country) + "%-9s" + "\033[0m" , country.getAbreviatura().substring(0, 9)));
                 else
-                    System.out.print(" " + String.format(colorPais(pais) + "%-9s" + "\033[0m" , pais.getAbreviatura()));
+                    System.out.print(" " + String.format(colorCountry(country) + "%-9s" + "\033[0m" , country.getAbreviatura()));
                 System.out.print(" |");
             }
             else 
             {
-                //Seleccionamos las casillas de frontera mar 
+                //Seleccionamos las casillas de border mar 
                 //3, 1. 9, 1. 10, 1. 5, 3. 6, 3. 4, 4. 3, 5. 9, 5.
-                if((i==4) && (linea == 6))
+                if((i==4) && (line == 6))
                     System.out.print("\033[0;31m" + "-----------|" + "\033[0m");
-                else if(((i == 10 || i == 11) && linea == 1) || (i == 5 && linea == 5) || (i == 4 && linea == 6))
+                else if(((i == 10 || i == 11) && line == 1) || (i == 5 && line == 5) || (i == 4 && line == 6))
                     System.out.print("\033[0;31m" + "-----------" + "\033[0m" + "|");
                 
-                else if (((i == 6 || i == 7) && linea == 4) || ((i == 10) && linea == 6))
+                else if (((i == 6 || i == 7) && line == 4) || ((i == 10) && line == 6))
                     System.out.print("\033[0;31m" + "     |     " + "\033[0m" + "|");                        
                 
-                else if(i == 4 && linea == 5)
+                else if(i == 4 && line == 5)
                     System.out.print("           " + "\033[0;31m" + "|" + "\033[0m");
                 else
                     System.out.print("           |");
@@ -139,7 +139,7 @@ public class Mapa {
     
     
     //Imprimimos número de ejércitos
-    void imprimirLineaEjercitos(int linea)
+    void printLineaArmies(int line)
     {
         System.out.print("\n|");
         //Usamos un for para recorrer cada columna, la fila ya la tenemos, se
@@ -148,15 +148,15 @@ public class Mapa {
         {
             //En caso de no existir un país (la casilla es agua), imprimimos una
             //casilla vacía
-            Pais pais = buscarPais(i, linea);
-            if(pais != null)            
-                System.out.print(" " + pais.getNumeroEjercito() + "         |");
+            Country country = buscarCountry(i, line);
+            if(country != null)            
+                System.out.print(" " + country.getArmyNumber() + "         |");
             
             else
                 
-                if(linea == 5 && i == 4)
+                if(line == 5 && i == 4)
                     System.out.print("           " + "\033[0;31m" + "|" + "\033[0m");
-                else if (((i == 6 || i == 7) && linea == 4) || ((i == 10) && linea == 6))
+                else if (((i == 6 || i == 7) && line == 4) || ((i == 10) && line == 6))
                     System.out.print("\033[0;31m" + "     |     " + "\033[0m" + "|");   
                 else
                     System.out.print("           |");
@@ -166,31 +166,31 @@ public class Mapa {
     //FIN DE FUNCIONES AUXILIARES DE VER MAPA
     
     //Devuelve un país a partir de las coordenadas de su casilla
-    Pais buscarPais(int x, int y)
+    Country buscarCountry(int x, int y)
     {
         //Recorremos la Collection con un for-each
-        for(Casilla casilla: casillas)
+        for(Tile casilla: casillas)
             //En caso de que las coordenadas coincidan, devolvemos el país
             //asociado
-            if(casilla.getx() == x && casilla.gety() == y) return casilla.getPais();
+            if(casilla.getx() == x && casilla.gety() == y) return casilla.getCountry();
         //En caso contrario, devolvemos valor nulo
         return null;
     }
    
-    public ArrayList <Pais> obtenerFrontera(Pais pais)
+    public ArrayList <Country> getBorder(Country country)
     {
         //Creamos el ArrayList que devolveremos al final
-        ArrayList <Pais> fronteras = new ArrayList<>();
+        ArrayList <Country> borders = new ArrayList<>();
         
         //Creamos dos ints para guardar las coordenadas del país del que
-        //queremos saber la frontera
+        //queremos saber la border
         int x = 0, y = 0;
         
         //Usamos un for-each para encontrar la casilla asociada al país dentro
         //de nuestro ArrayList
-        for(Casilla casilla: casillas)
+        for(Tile casilla: casillas)
         {
-            if(casilla.getPais().equals(pais))
+            if(casilla.getCountry().equals(country))
             {
                 x = casilla.getx();
                 y = casilla.gety();
@@ -198,82 +198,82 @@ public class Mapa {
         }
         
         //Comprobamos si tiene países adyacentes y los añadimos al ArrayList
-        if(buscarPais(x + 1, y) != null)
-            fronteras.add(buscarPais(x + 1, y));
+        if(buscarCountry(x + 1, y) != null)
+            borders.add(buscarCountry(x + 1, y));
 
-        if(buscarPais(x - 1, y) != null)
-            fronteras.add(buscarPais(x - 1, y));
+        if(buscarCountry(x - 1, y) != null)
+            borders.add(buscarCountry(x - 1, y));
 
-        if(buscarPais(x, y + 1) != null)
-            fronteras.add(buscarPais(x, y + 1));
+        if(buscarCountry(x, y + 1) != null)
+            borders.add(buscarCountry(x, y + 1));
 
-        if(buscarPais(x, y - 1) != null)
-            fronteras.add(buscarPais(x, y - 1));
+        if(buscarCountry(x, y - 1) != null)
+            borders.add(buscarCountry(x, y - 1));
 
-        //Fronteras mar:
+        //Borders mar:
             
-        //Comprobamos qué país tenemos y buscamos su frontera en la lista de
+        //Comprobamos qué país tenemos y buscamos su border en la lista de
         //casillas y la añadimos a la lista de salida
-        if(pais.getAbreviatura().equals("Groenlan"))
-            for(Casilla casilla : casillas)
-                if(casilla.getPais().getAbreviatura().equals("Islandia"))
-                    fronteras.add(casilla.getPais());
+        if(country.getAbreviatura().equals("Groenlan"))
+            for(Tile casilla : casillas)
+                if(casilla.getCountry().getAbreviatura().equals("Islandia"))
+                    borders.add(casilla.getCountry());
 
-        if(pais.getAbreviatura().equals("Islandia"))
-            for(Casilla casilla : casillas)
-                if(casilla.getPais().getAbreviatura().equals("Groenlan"))
-                    fronteras.add(casilla.getPais());
+        if(country.getAbreviatura().equals("Islandia"))
+            for(Tile casilla : casillas)
+                if(casilla.getCountry().getAbreviatura().equals("Groenlan"))
+                    borders.add(casilla.getCountry());
 
-        if(pais.getAbreviatura().equals("Brasil"))
-            for(Casilla casilla : casillas)
-                if(casilla.getPais().getAbreviatura().equals("ANorte"))
-                    fronteras.add(casilla.getPais());
+        if(country.getAbreviatura().equals("Brasil"))
+            for(Tile casilla : casillas)
+                if(casilla.getCountry().getAbreviatura().equals("ANorte"))
+                    borders.add(casilla.getCountry());
 
-        if(pais.getAbreviatura().equals("ANorte"))
-            for(Casilla casilla : casillas)
+        if(country.getAbreviatura().equals("ANorte"))
+            for(Tile casilla : casillas)
             {
-                if(casilla.getPais().getAbreviatura().equals("Brasil"))
-                    fronteras.add(casilla.getPais());
-                if(casilla.getPais().getAbreviatura().equals("EurOcc"))
-                    fronteras.add(casilla.getPais());
+                if(casilla.getCountry().getAbreviatura().equals("Brasil"))
+                    borders.add(casilla.getCountry());
+                if(casilla.getCountry().getAbreviatura().equals("EurOcc"))
+                    borders.add(casilla.getCountry());
             }
 
-        if(pais.getAbreviatura().equals("EurOcc"))
-            for(Casilla casilla : casillas)
-                if(casilla.getPais().getAbreviatura().equals("ANorte"))
-                    fronteras.add(casilla.getPais());
+        if(country.getAbreviatura().equals("EurOcc"))
+            for(Tile casilla : casillas)
+                if(casilla.getCountry().getAbreviatura().equals("ANorte"))
+                    borders.add(casilla.getCountry());
 
-        if(pais.getAbreviatura().equals("EurSur"))
-            for(Casilla casilla : casillas)
-                if(casilla.getPais().getAbreviatura().equals("Egipto"))
-                    fronteras.add(casilla.getPais());
+        if(country.getAbreviatura().equals("EurSur"))
+            for(Tile casilla : casillas)
+                if(casilla.getCountry().getAbreviatura().equals("Egipto"))
+                    borders.add(casilla.getCountry());
 
-            if(pais.getAbreviatura().equals("Egipto"))
-                for(Casilla casilla : casillas)
-                    if(casilla.getPais().getAbreviatura().equals("EurSur"))
-                        fronteras.add(casilla.getPais());
+            if(country.getAbreviatura().equals("Egipto"))
+                for(Tile casilla : casillas)
+                    if(casilla.getCountry().getAbreviatura().equals("EurSur"))
+                        borders.add(casilla.getCountry());
 
-            if(pais.getAbreviatura().equals("SAsiático"))
-                for(Casilla casilla : casillas)
-                    if(casilla.getPais().getAbreviatura().equals("Indonesia"))
-                        fronteras.add(casilla.getPais());
+            if(country.getAbreviatura().equals("SAsiático"))
+                for(Tile casilla : casillas)
+                    if(casilla.getCountry().getAbreviatura().equals("Indonesia"))
+                        borders.add(casilla.getCountry());
 
-            if(pais.getAbreviatura().equals("Indonesia"))
-                for(Casilla casilla : casillas)
-                    if(casilla.getPais().getAbreviatura().equals("SAsiático"))
-                        fronteras.add(casilla.getPais());
+            if(country.getAbreviatura().equals("Indonesia"))
+                for(Tile casilla : casillas)
+                    if(casilla.getCountry().getAbreviatura().equals("SAsiático"))
+                        borders.add(casilla.getCountry());
 
-            if(pais.getAbreviatura().equals("Alaska"))
-                for(Casilla casilla : casillas)
-                    if(casilla.getPais().getAbreviatura().equals("Kamchatka"))
-                        fronteras.add(casilla.getPais());
+            if(country.getAbreviatura().equals("Alaska"))
+                for(Tile casilla : casillas)
+                    if(casilla.getCountry().getAbreviatura().equals("Kamchatka"))
+                        borders.add(casilla.getCountry());
 
-            if(pais.getAbreviatura().equals("Kamchatka"))
-                for(Casilla casilla : casillas)
-                    if(casilla.getPais().getAbreviatura().equals("Alaska"))
-                        fronteras.add(casilla.getPais());
+            if(country.getAbreviatura().equals("Kamchatka"))
+                for(Tile casilla : casillas)
+                    if(casilla.getCountry().getAbreviatura().equals("Alaska"))
+                        borders.add(casilla.getCountry());
             
         //Devolvemos el ArrayList resultante        
-        return fronteras;
+        return borders;
     }
 }

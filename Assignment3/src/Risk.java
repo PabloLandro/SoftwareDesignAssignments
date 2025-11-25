@@ -11,13 +11,13 @@ package risk;
  */
 public class Risk {
 
-    static ConsolaNormal consola;
+    static NormalConsole console;
     
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        consola = new ConsolaNormal();
+        console = new NormalConsole();
         new Menu();
     }
 }

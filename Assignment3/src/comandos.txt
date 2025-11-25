@@ -1,39 +1,39 @@
-crear mapa
-crear mapa
-crear jugadores jugadores.csv
+crear map
+crear map
+crear players players.csv
 crear Gondorff AZUL
 crear JT VERDE
-asignar paises paises.csv
-asignar misiones misiones.csv
+asignar countries countries.csv
+asignar missions missions.csv
 crear JT CYAN
-repartir ejercitos
-ver mapa
-asignar paises paises.csv
-asignar mision Hooker M32
-asignar paises paises.csv
-asignar pais Gondorff Rusia
-repartir ejercitos 8 Alaska
-repartir ejercitos 5 Groenlan
-repartir ejercitos 5 Urales
-repartir ejercitos 3 Quebec
-repartir ejercitos 7 Ontario
+distribute armies
+ver map
+asignar countries countries.csv
+asignar mission Hooker M32
+asignar countries countries.csv
+asignar country Gondorff Rusia
+distribute armies 8 Alaska
+distribute armies 5 Groenlan
+distribute armies 5 Urales
+distribute armies 3 Quebec
+distribute armies 7 Ontario
 acabar turno
-repartir ejercitos 10 Venezuela
-repartir ejercitos 5 ANorte
-repartir ejercitos 6 Egipto
-repartir ejercitos 5 India
+distribute armies 10 Venezuela
+distribute armies 5 ANorte
+distribute armies 6 Egipto
+distribute armies 5 India
 acabar turno
-repartir ejercitos 15 Indonesia
-repartir ejercitos 6 NGuinea
+distribute armies 15 Indonesia
+distribute armies 6 NGuinea
 acabar turno
-repartir ejercitos 4 Islandia
-describir pais USAEste
-atacar Ontario 5x1x1 USAEste 4
-describir pais USAEste
-describir pais Ontario
-rearmar Alaska 4 Alberta
-asignar carta Fusilero&Alaska
-atacar GBretaña 3 EurSur 4
+distribute armies 4 Islandia
+describir country USAEste
+attack Ontario 5x1x1 USAEste 4
+describir country USAEste
+describir country Ontario
+rearm Alaska 4 Alberta
+asignar carta Rifleman&Alaska
+attack GBretaña 3 EurSur 4
 acabar turno
-describir jugador Gondorff
-describir continente AméricaNorte
+describir player Gondorff
+describir continent AméricaNorte

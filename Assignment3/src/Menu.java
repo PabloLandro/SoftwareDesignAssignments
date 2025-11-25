@@ -11,115 +11,115 @@ import java.util.Iterator;
 
 /**
  *
- * COSAS A MODIFICAR: //Creación de las cartas correspondientes al país en
- * leerPaises //Cambiar cartas todas y repartir ejercitos //Ver si 6 cartas
+ * COSAS A MODIFICAR: //Creación de las cards correspondientes al país en
+ * readCountries //Cambiar cards all y distribute armies //Ver si 6 cards
  * //Error 121 tiene sentido?
  */
 public class Menu {
     // En esta clase se deberían de definir los atributos a los que será 
     // necesario acceder durante la ejecución del programa como, por ejemplo,
-    // el mapa o los jugadores
+    // el map o los players
 
-    HashMap<String, Jugador> jugadores = new HashMap<>();
-    HashMap<String, Pais> paises = new HashMap<>();
-    HashMap<String, Continente> continentes = new HashMap<>();
-    HashMap<String, Mision> misiones = new HashMap<>();
-    HashMap<String, String> abreviaturas = new HashMap<>();
-    HashMap<String, String> nombres = new HashMap<>();
-    HashMap<String, Carta> cartas = new HashMap<>();
-    ArrayList<String> colores = new ArrayList<>();
-    ArrayList<String> coloresUsados = new ArrayList<>();
-    ArrayList<String> misionesAsignadas = new ArrayList<>();
-    ArrayList<String> paisesAsignados = new ArrayList<>();
-    ArrayList<String> turnos = new ArrayList<>();                               //Guarda los nombres de los jugadores en el orden de los turnos
-    Jugador jugadorTurno;                                                       //Jugador que está jugando el turno actual
+    HashMap<String, Player> players = new HashMap<>();
+    HashMap<String, Country> countries = new HashMap<>();
+    HashMap<String, Continent> continents = new HashMap<>();
+    HashMap<String, Mision> missions = new HashMap<>();
+    HashMap<String, String> abbreviations = new HashMap<>();
+    HashMap<String, String> names = new HashMap<>();
+    HashMap<String, Card> cards = new HashMap<>();
+    ArrayList<String> colors = new ArrayList<>();
+    ArrayList<String> usedColors = new ArrayList<>();
+    ArrayList<String> assignedMissions = new ArrayList<>();
+    ArrayList<String> assignedCountries = new ArrayList<>();
+    ArrayList<String> turns = new ArrayList<>();                               //Guarda los names de los players en el orden de los turns
+    Player turnPlayer;                                                       //Player que está jugando el turno actual
 
     String out = new String();
 
-    //Contador comandos
-    boolean mapaCreado = false;
-    //boolean misionesAsignadasBool = false;
+    //Contador commands
+    boolean mapCreated = false;
+    //boolean assignedMissionsBool = false;
 
-    boolean batallaGanada = false;
+    boolean battleWon = false;
 
-    Mapa mapa = new Mapa();
+    Mapa map = new Mapa();
 
     /**
      *
      */
     public Menu() {
         // Inicialización de algunos atributos
-        leerContinentes();
-        leerPaises();
-        leerColores();
-        leerMisiones();
+        readContinents();
+        readCountries();
+        readColors();
+        readMissions();
 
         // Iniciar juego
         String orden = null;
 
         do {
-            Risk.consola.Imprimir("\nOrden:");
-            orden = Risk.consola.leer();
-            String[] partes = orden.split(" ");
-            String comando = partes[0];
+            Risk.console.Print("\nOrden:");
+            orden = Risk.console.read();
+            String[] parts = orden.split(" ");
+            String command = parts[0];
             // COMANDOS INICIALES PARA EMPEZAR A JUGAR
-            //    crear mapa
-            //    crear jugadores <nombre_fichero>
+            //    crear map
+            //    crear players <nombre_fichero>
             //    crear <nombre_jugador> <nombre_color>
-            //    asignar misiones
-            //    asignar paises <nombre_fichero>
-            //    asignar <nombre_pais> <nombre_jugador>
+            //    asignar missions
+            //    asignar countries <nombre_fichero>
+            //    asignar <nombre_country> <nombre_jugador>
 
             // COMANDOS DISPONIBLES DURANTE EL JUEGO
             //    acabar
-            //    atacar <nombre_pais> <nombre_pais>
-            //    describir continente <nombre_continente>
-            //    describir frontera <nombre_pais>
-            //    describir frontera <nombre_continente>
-            //    describir jugador <nombre_jugador>
-            //    describir pais <nombre_pais>
-            //    jugador
-            //    repartir ejercitos
-            //    ver mapa
-            //    ver pais <nombre_pais>
+            //    attack <nombre_country> <nombre_country>
+            //    describir continent <nombre_continent>
+            //    describir border <nombre_country>
+            //    describir border <nombre_continent>
+            //    describir player <nombre_jugador>
+            //    describir country <nombre_country>
+            //    player
+            //    distribute armies
+            //    ver map
+            //    ver country <nombre_country>
             try {
-                switch (comando) {
+                switch (command) {
 
                     case "crear":
 
-                        if (partes.length == 2) {
+                        if (parts.length == 2) {
                             //COMANDO 1
-                            if (partes[1].equals("mapa")) {
-                                if (!mapaCreado) {
-                                    crearMapa();
-                                    mapaCreado = true;
+                            if (parts[1].equals("map")) {
+                                if (!mapCreated) {
+                                    createMap();
+                                    mapCreated = true;
                                 } else {
-                                    ExcepcionGeo error = new ExcepcionGeo("107");
+                                    GeoException error = new GeoException("107");
                                     throw (error);
                                 }
 
                             } else {
-                                //new Errores(101);
-                                ExcepcionComando error = new ExcepcionComando("101");
+                                //new Errors(101);
+                                CommandException error = new CommandException("101");
                                 throw (error);
                             }
                         } //COMANDO 3
-                        else if (partes.length == 3) {
-                            if ((misionesAsignadas() == false) && (jugadores.size() < 6)) {
-                                if (partes[1].equals("jugadores")) {
-                                    crearJugador(new File(partes[2]));
+                        else if (parts.length == 3) {
+                            if ((assignedMissions() == false) && (players.size() < 6)) {
+                                if (parts[1].equals("players")) {
+                                    crearPlayer(new File(parts[2]));
                                 } //COMANDO 2
                                 else {
-                                    crearJugador(partes[1], partes[2]);
+                                    crearPlayer(parts[1], parts[2]);
                                 }
                             } else {
-                                //new Errores(99);
-                                ExcepcionComando error = new ExcepcionComando("99");
+                                //new Errors(99);
+                                CommandException error = new CommandException("99");
                                 throw (error);
                             }
                         } else {
-                            //new Errores(101);
-                            ExcepcionComando error = new ExcepcionComando("101");
+                            //new Errors(101);
+                            CommandException error = new CommandException("101");
                             throw (error);
                         }
 
@@ -127,130 +127,130 @@ public class Menu {
 
                     case "asignar":
 
-                        switch (partes[1]) {
-                            case "paises":
+                        switch (parts[1]) {
+                            case "countries":
                                 //COMANDO 7
-                                if (!misionesAsignadas()) {
-                                    //new Errores(118);
-                                    ExcepcionMision error = new ExcepcionMision("118");
+                                if (!assignedMissions()) {
+                                    //new Errors(118);
+                                    MissionException error = new MissionException("118");
                                     throw (error);
                                 } else {
-                                    repartirEjercitosIniciales();
-                                    asignarPaises(new File(partes[2]));
+                                    distributeArmiesIniciales();
+                                    assignCountries(new File(parts[2]));
                                 }
                                 break;
 
-                            case "misiones":
+                            case "missions":
                                 //COMANDO 5
-                                if (partes.length != 3) {
-                                    ExcepcionComando error = new ExcepcionComando("101");
+                                if (parts.length != 3) {
+                                    CommandException error = new CommandException("101");
                                     throw (error);
                                 }
-                                asignarMisiones(new File(partes[2]));
+                                assignMissions(new File(parts[2]));
                                 break;
 
-                            case "mision":
+                            case "mission":
                                 //COMANDO 4
-                                if (jugadores.size() > 2) {
-                                    asignarMisiones(partes[2], partes[3]);
+                                if (players.size() > 2) {
+                                    assignMissions(parts[2], parts[3]);
                                 } else {
-                                    //new Errores(105);
-                                    ExcepcionJugador error = new ExcepcionJugador("105");
+                                    //new Errors(105);
+                                    PlayerException error = new PlayerException("105");
                                     throw (error);
                                 }
                                 break;
 
-                            case "pais":
+                            case "country":
                                 //COMANDO 6
-                                if (!misionesAsignadas()) {
-                                    //new Errores(118);
-                                    ExcepcionMision error = new ExcepcionMision("118");
+                                if (!assignedMissions()) {
+                                    //new Errors(118);
+                                    MissionException error = new MissionException("118");
                                     throw (error);
                                 } else {
-                                    asignarPaises(partes[2], partes[3]);
+                                    assignCountries(parts[2], parts[3]);
                                 }
                                 break;
 
                             case "carta":
-                                if (partes.length != 3) {
-                                    ExcepcionComando error = new ExcepcionComando("101");
+                                if (parts.length != 3) {
+                                    CommandException error = new CommandException("101");
                                     throw (error);
                                 }
                                 //COMANDO 21
-                                asignarCarta(jugadorTurno, partes[2]);
+                                assignCard(turnPlayer, parts[2]);
                                 break;
 
                             default:
-                                //new Errores(101);
-                                ExcepcionComando error = new ExcepcionComando("101");
+                                //new Errors(101);
+                                CommandException error = new CommandException("101");
                                 throw (error);
                         }
 
                         break;
 
-                    case "obtener":
+                    case "get":
 
-                        switch (partes[1]) {
-                            case "frontera":
-                                if (!paises.containsKey(partes[2])) {
-                                    //new Errores(109);
-                                    ExcepcionGeo error = new ExcepcionGeo("109");
+                        switch (parts[1]) {
+                            case "border":
+                                if (!countries.containsKey(parts[2])) {
+                                    //new Errors(109);
+                                    GeoException error = new GeoException("109");
                                     throw (error);
                                 } else {
-                                    ArrayList<Pais> fronteras = mapa.obtenerFrontera(paises.get(partes[2]));
-                                    out = "{\n  frontera: [";
-                                    for (int i = 0; i < fronteras.size(); i++) {
-                                        out = out + " \"" + fronteras.get(i).getNombre() + "\"";
-                                        if (i != fronteras.size() - 1) {
+                                    ArrayList<Country> borders = map.getBorder(countries.get(parts[2]));
+                                    out = "{\n  border: [";
+                                    for (int i = 0; i < borders.size(); i++) {
+                                        out = out + " \"" + borders.get(i).getName() + "\"";
+                                        if (i != borders.size() - 1) {
                                             out = out + ",";
                                         }
                                     }
                                     out = out + " ]\n}\n";
-                                    Risk.consola.Imprimir(out);
+                                    Risk.console.Print(out);
                                 }
                                 break;
 
                             case "color":
-                                if (!paises.containsKey(partes[2])) {
-                                    //new Errores(109);
-                                    ExcepcionGeo error = new ExcepcionGeo("109");
+                                if (!countries.containsKey(parts[2])) {
+                                    //new Errors(109);
+                                    GeoException error = new GeoException("109");
                                     throw (error);
-                                } else if (!colores.contains(paises.get(partes[2]).getContinente().getColor())) {
-                                    //new Errores(100);
-                                    ExcepcionGeo error = new ExcepcionGeo("100");
+                                } else if (!colors.contains(countries.get(parts[2]).getContinent().getColor())) {
+                                    //new Errors(100);
+                                    GeoException error = new GeoException("100");
                                     throw (error);
-                                } else if (colores.contains(paises.get(partes[2]).getContinente().getColor()) && paises.containsKey(partes[2])) {
-                                    out = "{ color: \"" + paises.get(partes[2]).getContinente().getColor() + "\" }\n";
-                                    Risk.consola.Imprimir(out);
+                                } else if (colors.contains(countries.get(parts[2]).getContinent().getColor()) && countries.containsKey(parts[2])) {
+                                    out = "{ color: \"" + countries.get(parts[2]).getContinent().getColor() + "\" }\n";
+                                    Risk.console.Print(out);
                                 }
                                 break;
 
-                            case "continente":
-                                if (!paises.containsKey(partes[2])) {
-                                    //new Errores(109);
-                                    ExcepcionGeo error = new ExcepcionGeo("109");
+                            case "continent":
+                                if (!countries.containsKey(parts[2])) {
+                                    //new Errors(109);
+                                    GeoException error = new GeoException("109");
                                     throw (error);
-                                } else if (!continentes.containsKey(abreviaturas.get(paises.get(partes[2]).getContinente().getNombre()))) {
-                                    //new Errores(102);
-                                    ExcepcionGeo error = new ExcepcionGeo("102");
+                                } else if (!continents.containsKey(abbreviations.get(countries.get(parts[2]).getContinent().getName()))) {
+                                    //new Errors(102);
+                                    GeoException error = new GeoException("102");
                                     throw (error);
-                                } else if (colores.contains(paises.get(partes[2]).getContinente().getColor()) && paises.containsKey(partes[2])) {
-                                    out = "{ continente: \"" + paises.get(partes[2]).getContinente().getNombre() + "\" }\n";
-                                    Risk.consola.Imprimir(out);
+                                } else if (colors.contains(countries.get(parts[2]).getContinent().getColor()) && countries.containsKey(parts[2])) {
+                                    out = "{ continent: \"" + countries.get(parts[2]).getContinent().getName() + "\" }\n";
+                                    Risk.console.Print(out);
                                 }
                                 break;
 
-                            case "paises":
-                                if (!continentes.containsKey(partes[2])) {
-                                    //new Errores(102);
-                                    ExcepcionGeo error = new ExcepcionGeo("102");
+                            case "countries":
+                                if (!continents.containsKey(parts[2])) {
+                                    //new Errors(102);
+                                    GeoException error = new GeoException("102");
                                     throw (error);
                                 } else {
-                                    ArrayList<Pais> imprimir = continentes.get(partes[2]).getPaises();
-                                    out = "{\n  paises: [ ";
-                                    for (int i = 0; i < imprimir.size(); i++) {
-                                        out = out + "\"" + imprimir.get(i).getNombre() + "\"";
-                                        if (i != imprimir.size() - 1) {
+                                    ArrayList<Country> Print = continents.get(parts[2]).getCountries();
+                                    out = "{\n  countries: [ ";
+                                    for (int i = 0; i < Print.size(); i++) {
+                                        out = out + "\"" + Print.get(i).getName() + "\"";
+                                        if (i != Print.size() - 1) {
                                             out = out + ",";
                                             out = out + "\n            ";
                                         } else {
@@ -258,53 +258,53 @@ public class Menu {
                                         }
                                     }
                                     out = out + "}";
-                                    Risk.consola.Imprimir(out);
+                                    Risk.console.Print(out);
                                 }
                                 break;
 
                             default:
-                                //new Errores(101);
-                                ExcepcionComando error = new ExcepcionComando("101");
+                                //new Errors(101);
+                                CommandException error = new CommandException("101");
                                 throw (error);
                         }
 
                         break;
 
                     case "describir":
-                        switch (partes[1]) {
-                            case "jugador":
+                        switch (parts[1]) {
+                            case "player":
                                 //COMANDO 14
-                                if (!jugadores.containsKey(partes[2])) {
-                                    //new Errores(103);
-                                    ExcepcionJugador error = new ExcepcionJugador("103");
+                                if (!players.containsKey(parts[2])) {
+                                    //new Errors(103);
+                                    PlayerException error = new PlayerException("103");
                                     throw (error);
                                 } else {
-                                    out = jugadores.get(partes[2]).toString(jugadorTurno.equals(jugadores.get(partes[2])));
-                                    Risk.consola.Imprimir(out);
+                                    out = players.get(parts[2]).toString(turnPlayer.equals(players.get(parts[2])));
+                                    Risk.console.Print(out);
                                 }
                                 break;
 
-                            case "pais":
+                            case "country":
                                 //COMANDO 15
-                                if (!paises.containsKey(partes[2])) {
-                                    //new Errores(103);
-                                    ExcepcionJugador error = new ExcepcionJugador("103");
+                                if (!countries.containsKey(parts[2])) {
+                                    //new Errors(103);
+                                    PlayerException error = new PlayerException("103");
                                     throw (error);
                                 } else {
-                                    out = paises.get(partes[2]).toString();
-                                    Risk.consola.Imprimir(out);
+                                    out = countries.get(parts[2]).toString();
+                                    Risk.console.Print(out);
                                 }
                                 break;
 
-                            case "continente":
+                            case "continent":
                                 //COMANDO 16
-                                if (!continentes.containsKey(partes[2])) {
-                                    //new Errores(102);
-                                    ExcepcionGeo error = new ExcepcionGeo("102");
+                                if (!continents.containsKey(parts[2])) {
+                                    //new Errors(102);
+                                    GeoException error = new GeoException("102");
                                     throw (error);
                                 } else {
-                                    out = continentes.get(partes[2]).toString();
-                                    Risk.consola.Imprimir(out);
+                                    out = continents.get(parts[2]).toString();
+                                    Risk.console.Print(out);
                                 }
                                 break;
                         }
@@ -313,170 +313,170 @@ public class Menu {
 
                     case "ver":
                         //COMANDO 17
-                        if (partes[1].equals("mapa")) {
-                            mapa.verMapa();
+                        if (parts[1].equals("map")) {
+                            map.verMapa();
                         } else {
-                            //new Errores(101);
-                            ExcepcionComando error = new ExcepcionComando("101");
+                            //new Errors(101);
+                            CommandException error = new CommandException("101");
                             throw (error);
                         }
                         break;
 
-                    case "jugador":
+                    case "player":
                         //COMANDO 13
-                        //Imprimimos la descripción del jugador
-                        out = jugadorTurno.toString(true);
-                        Risk.consola.Imprimir(out);
+                        //Imprimimos la description del player
+                        out = turnPlayer.toString(true);
+                        Risk.console.Print(out);
                         break;
 
                     case "acabar":
-                        if (partes[1].equals("turno")) {
+                        if (parts[1].equals("turno")) {
                             //COMANDO 12
-                            //Igualamos jugadorTurno al siguiente, obteniéndolo
-                            //del mapa con el nombre de la lista turnos
+                            //Igualamos turnPlayer al siguiente, obteniéndolo
+                            //del map con el name de la lista turns
                             acabarTurno();
                         } else {
-                            //new Errores(101);
-                            ExcepcionComando error = new ExcepcionComando("101");
+                            //new Errors(101);
+                            CommandException error = new CommandException("101");
                             throw (error);
                         }
                         break;
 
-                    case "cambiar":
-                        if (partes[1].equals("cartas")) {
-                            if (partes[2].equals("todas")) {
+                    case "change":
+                        if (parts[1].equals("cards")) {
+                            if (parts[2].equals("all")) {
                                 //COMANDO 11
-                                cambiarCartasTodas();
+                                changeAllCard();
                             } else {
                                 //COMANDO 10
-                                cambiarCartas(jugadorTurno, partes[2], partes[3], partes[4]);
+                                changeCards(turnPlayer, parts[2], parts[3], parts[4]);
                             }
                         }
                         break;
 
-                    case "repartir":
-                        if (partes[1].equals("ejercitos")) {
-                            if (partes.length == 2) {
+                    case "distribute":
+                        if (parts[1].equals("armies")) {
+                            if (parts.length == 2) {
                                 //COMANDO 9
-                                repartirEjercitos();
-                            } else if (partes.length == 4) {
+                                distributeArmies();
+                            } else if (parts.length == 4) {
                                 //COMANDO 8
-                                repartirEjercitos(Integer.valueOf(partes[2]), partes[3]);
+                                distributeArmies(Integer.valueOf(parts[2]), parts[3]);
                             } else {
-                                //new Errores(101);
-                                ExcepcionComando error = new ExcepcionComando("101");
+                                //new Errors(101);
+                                CommandException error = new CommandException("101");
                                 throw (error);
                             }
                         } else {
-                            //new Errores(101);
-                            ExcepcionComando error = new ExcepcionComando("101");
+                            //new Errors(101);
+                            CommandException error = new CommandException("101");
                             throw (error);
                         }
                         break;
 
-                    case "atacar":
-                        if (partes.length == 5) {
+                    case "attack":
+                        if (parts.length == 5) {
                             //COMANDO 19
-                            atacar(partes[1], partes[2], partes[3], partes[4]);
-                        } else if (partes.length == 3) {
+                            attack(parts[1], parts[2], parts[3], parts[4]);
+                        } else if (parts.length == 3) {
                             //COMANDO 18
-                            atacar(partes[1], partes[2]);
+                            attack(parts[1], parts[2]);
                         } else {
-                            //new Errores(101);
-                            ExcepcionComando error = new ExcepcionComando("101");
+                            //new Errors(101);
+                            CommandException error = new CommandException("101");
                             throw (error);
                         }
                         break;
 
-                    case "rearmar":
-                        if (partes.length == 4) {
+                    case "rearm":
+                        if (parts.length == 4) {
                             //COMANDO 20
-                            rearmar(partes[1], Integer.valueOf(partes[2]), partes[3]);
+                            rearm(parts[1], Integer.valueOf(parts[2]), parts[3]);
                         } else {
-                            //new Errores(101);
-                            ExcepcionComando error = new ExcepcionComando("101");
+                            //new Errors(101);
+                            CommandException error = new CommandException("101");
                             throw (error);
                         }
                         break;
 
                     default:
-                        //new Errores(101);
-                        ExcepcionComando error = new ExcepcionComando("101");
+                        //new Errors(101);
+                        CommandException error = new CommandException("101");
                         throw (error);
                 }
-            } catch (ExcepcionCarta error) {
-                error.imprimirError();
-            } catch (ExcepcionJugador error) {
-                error.imprimirError();
-            } catch (ExcepcionGeo error) {
-                error.imprimirError();
-            } catch (ExcepcionComando error) {
-                error.imprimirError();
-            } catch (ExcepcionMision error) {
-                error.imprimirError();
+            } catch (CardException error) {
+                error.PrintError();
+            } catch (PlayerException error) {
+                error.PrintError();
+            } catch (GeoException error) {
+                error.PrintError();
+            } catch (CommandException error) {
+                error.PrintError();
+            } catch (MissionException error) {
+                error.PrintError();
             }
-        } while (!orden.equals("salir"));
+        } while (!orden.equals("quit"));
     }
 
-    private void leerContinentes() {
-        String linea, partes[];
-        BufferedReader bufferLector = null;
+    private void readContinents() {
+        String line, parts[];
+        BufferedReader readBuffer = null;
         try {
-            File fichero = new File("lecContinentes.csv");
+            File fichero = new File("leccontinents.csv");
             FileReader lector = new FileReader(fichero);
-            bufferLector = new BufferedReader(lector);
-            while ((linea = bufferLector.readLine()) != null) {
-                partes = linea.split(";");
-                continentes.put(partes[2], new Continente(partes[0], partes[1], partes[2]));
-                abreviaturas.put(partes[0], partes[2]);
-                nombres.put(partes[2], partes[0]);
+            readBuffer = new BufferedReader(lector);
+            while ((line = readBuffer.readLine()) != null) {
+                parts = line.split(";");
+                continents.put(parts[2], new Continent(parts[0], parts[1], parts[2]));
+                abbreviations.put(parts[0], parts[2]);
+                names.put(parts[2], parts[0]);
             }
         } catch (Exception excepcion) {
             excepcion.printStackTrace();
         }
     }
 
-    private void leerPaises() {
-        String linea, partes[];
-        BufferedReader bufferLector = null;
+    private void readCountries() {
+        String line, parts[];
+        BufferedReader readBuffer = null;
         try {
-            File fichero = new File("lecPaises.csv");
+            File fichero = new File("lecCountries.csv");
             FileReader lector = new FileReader(fichero);
-            bufferLector = new BufferedReader(lector);
-            while ((linea = bufferLector.readLine()) != null) {
-                partes = linea.split(";");
-                paises.put(partes[1], new Pais(partes[0], partes[1], continentes.get(partes[2])));
-                //Creación de las cartas correspondientes al país
-                //cartas.put(new String("Infantería&" + partes[1]), new Carta(new String("Infantería"), paises.get(partes[1])));
-                //cartas.put(new String("Caballería&" + partes[1]), new Carta(new String("Caballería"), paises.get(partes[1])));
-                //cartas.put(new String("Artillería&" + partes[1]), new Carta(new String("Artillería"), paises.get(partes[1])));
-                abreviaturas.put(partes[0], partes[1]);
-                nombres.put(partes[1], partes[0]);
+            readBuffer = new BufferedReader(lector);
+            while ((line = readBuffer.readLine()) != null) {
+                parts = line.split(";");
+                countries.put(parts[1], new Country(parts[0], parts[1], continents.get(parts[2])));
+                //Creación de las cards correspondientes al país
+                //cards.put(new String("Infantería&" + parts[1]), new Card(new String("Infantería"), countries.get(parts[1])));
+                //cards.put(new String("Caballería&" + parts[1]), new Card(new String("Caballería"), countries.get(parts[1])));
+                //cards.put(new String("Artillería&" + parts[1]), new Card(new String("Artillería"), countries.get(parts[1])));
+                abbreviations.put(parts[0], parts[1]);
+                names.put(parts[1], parts[0]);
             }
         } catch (Exception excepcion) {
             excepcion.printStackTrace();
         }
     }
 
-    public void leerColores() {
-        colores.add("ROJO");
-        colores.add("AMARILLO");
-        colores.add("AZUL");
-        colores.add("VERDE");
-        colores.add("CYAN");
-        colores.add("VIOLETA");
+    public void readColors() {
+        colors.add("ROJO");
+        colors.add("AMARILLO");
+        colors.add("AZUL");
+        colors.add("VERDE");
+        colors.add("CYAN");
+        colors.add("VIOLETA");
     }
 
-    private void leerMisiones() {
-        String linea, partes[];
-        BufferedReader bufferLector = null;
+    private void readMissions() {
+        String line, parts[];
+        BufferedReader readBuffer = null;
         try {
             File fichero = new File("lecMisiones.csv");
             FileReader lector = new FileReader(fichero);
-            bufferLector = new BufferedReader(lector);
-            while ((linea = bufferLector.readLine()) != null) {
-                partes = linea.split(";");
-                misiones.put(partes[1], new Mision(partes[0], partes[1]));
+            readBuffer = new BufferedReader(lector);
+            while ((line = readBuffer.readLine()) != null) {
+                parts = line.split(";");
+                missions.put(parts[1], new Mision(parts[0], parts[1]));
             }
         } catch (Exception excepcion) {
             excepcion.printStackTrace();
@@ -487,26 +487,26 @@ public class Menu {
      *
      * @param file
      */
-    public void asignarPaises(File file) throws ExcepcionMision {
+    public void assignCountries(File file) throws MissionException {
 
-        if (!misionesAsignadas()) {
-            ExcepcionMision error = new ExcepcionMision("118");
+        if (!assignedMissions()) {
+            MissionException error = new MissionException("118");
             throw (error);
         } else {
             // Código necesario para asignar países       
-            String linea, partes[];
-            BufferedReader bufferLector = null;
+            String line, parts[];
+            BufferedReader readBuffer = null;
             try {
                 FileReader lector = new FileReader(file);
-                bufferLector = new BufferedReader(lector);
-                while ((linea = bufferLector.readLine()) != null) {
-                    partes = linea.split(";");
+                readBuffer = new BufferedReader(lector);
+                while ((line = readBuffer.readLine()) != null) {
+                    parts = line.split(";");
                     try {
-                        asignarPaises(partes[0], partes[1]);
-                    } catch (ExcepcionJugador error) {
-                        error.imprimirError();
-                    } catch (ExcepcionGeo error) {
-                        error.imprimirError();
+                        assignCountries(parts[0], parts[1]);
+                    } catch (PlayerException error) {
+                        error.PrintError();
+                    } catch (GeoException error) {
+                        error.PrintError();
                     }
                 }
             } catch (IOException excepcion) {
@@ -515,63 +515,63 @@ public class Menu {
         }
     }
 
-    public void asignarPaises(String nombreJugador, String abreviaturaPais) throws ExcepcionJugador, ExcepcionGeo {
-        // Código necesario para asignar un país a un jugador
-        if (!jugadores.containsKey(nombreJugador)) {
-            //new Errores(103);
-            ExcepcionJugador error = new ExcepcionJugador("103");
+    public void assignCountries(String nombrePlayer, String abbreviationCountry) throws PlayerException, GeoException {
+        // Código necesario para asignar un país a un player
+        if (!players.containsKey(nombrePlayer)) {
+            //new Errors(103);
+            PlayerException error = new PlayerException("103");
             throw (error);
-        } else if (!paises.containsKey(abreviaturaPais)) {
-            //Comprobamos el pais existe
-            //new Errores(109);
-            ExcepcionGeo error = new ExcepcionGeo("109");
+        } else if (!countries.containsKey(abbreviationCountry)) {
+            //Comprobamos el country existe
+            //new Errors(109);
+            GeoException error = new GeoException("109");
             throw (error);
-        } /*Comprobamos que el pais no ha sido asignado previamente*/ else if (paisesAsignados.contains(abreviaturaPais)) {
-            //new Errores(113);
-            ExcepcionJugador error = new ExcepcionJugador("113");
+        } /*Comprobamos que el country no ha sido asignado previamente*/ else if (assignedCountries.contains(abbreviationCountry)) {
+            //new Errors(113);
+            PlayerException error = new PlayerException("113");
             throw (error);
-        } else if (jugadores.containsKey(nombreJugador) && paises.containsKey(abreviaturaPais)) {
-            jugadores.get(nombreJugador).addNumeroEjercitos(-1);
-            paisesAsignados.add(abreviaturaPais);
-            jugadores.get(nombreJugador).getPaises().add(paises.get(abreviaturaPais));
-            if (!jugadores.get(nombreJugador).getContinentes().contains(paises.get(abreviaturaPais).getContinente())) {
-                jugadores.get(nombreJugador).getContinentes().add(paises.get(abreviaturaPais).getContinente());
+        } else if (players.containsKey(nombrePlayer) && countries.containsKey(abbreviationCountry)) {
+            players.get(nombrePlayer).addArmyNumbers(-1);
+            assignedCountries.add(abbreviationCountry);
+            players.get(nombrePlayer).getCountries().add(countries.get(abbreviationCountry));
+            if (!players.get(nombrePlayer).getContinents().contains(countries.get(abbreviationCountry).getContinent())) {
+                players.get(nombrePlayer).getContinents().add(countries.get(abbreviationCountry).getContinent());
             }
-            paises.get(abreviaturaPais).setJugador(jugadores.get(nombreJugador));
+            countries.get(abbreviationCountry).setPlayer(players.get(nombrePlayer));
             out = "{\n";
-            out = out + "  nombre: \"" + nombreJugador + "\",\n";
-            out = out + "  pais: \"" + paises.get(abreviaturaPais).getNombre() + "\",\n";
-            out = out + "  continente: \"" + paises.get(abreviaturaPais).getContinente().getNombre() + "\",\n";
-            //Imprimir fronteras
-            ArrayList<Pais> fronteras = paises.get(abreviaturaPais).getFronteras();
-            out = out + "  frontera: [";
-            for (int i = 0; i < fronteras.size(); i++) {
-                out = out + " \"" + fronteras.get(i).getNombre() + "\"";
-                if (i != fronteras.size() - 1) {
+            out = out + "  name: \"" + nombrePlayer + "\",\n";
+            out = out + "  country: \"" + countries.get(abbreviationCountry).getName() + "\",\n";
+            out = out + "  continent: \"" + countries.get(abbreviationCountry).getContinent().getName() + "\",\n";
+            //Print borders
+            ArrayList<Country> borders = countries.get(abbreviationCountry).getBorders();
+            out = out + "  border: [";
+            for (int i = 0; i < borders.size(); i++) {
+                out = out + " \"" + borders.get(i).getName() + "\"";
+                if (i != borders.size() - 1) {
                     out = out + ",";
                 }
             }
             out = out + " ]\n";
             out = out + "}\n";
-            Risk.consola.Imprimir(out);
+            Risk.console.Print(out);
         }
 
     }
 
-    public void asignarMisiones(File file) throws ExcepcionJugador, ExcepcionMision {
-        String linea, partes[];
-        BufferedReader bufferLector = null;
+    public void assignMissions(File file) throws PlayerException, MissionException {
+        String line, parts[];
+        BufferedReader readBuffer = null;
         try {
             FileReader lector = new FileReader(file);
-            bufferLector = new BufferedReader(lector);
-            while ((linea = bufferLector.readLine()) != null) {
-                partes = linea.split(";");
+            readBuffer = new BufferedReader(lector);
+            while ((line = readBuffer.readLine()) != null) {
+                parts = line.split(";");
                 try {
-                    asignarMisiones(partes[0], partes[1]);
-                } catch (ExcepcionJugador error) {
-                    error.imprimirError();
-                } catch (ExcepcionMision error) {
-                    error.imprimirError();
+                    assignMissions(parts[0], parts[1]);
+                } catch (PlayerException error) {
+                    error.PrintError();
+                } catch (MissionException error) {
+                    error.PrintError();
                 }
             }
         } catch (IOException excepcion) {
@@ -580,74 +580,74 @@ public class Menu {
         //catch(FileNotFoundException excepcion){excepcion.printStackTrace();}
     }
 
-    public boolean misionesAsignadas() {
+    public boolean assignedMissions() {
         boolean salida = true;
-        for (String jugador : jugadores.keySet()) {
-            if (jugadores.get(jugador).getMision().getId().equals("0")) {
+        for (String player : players.keySet()) {
+            if (players.get(player).getMision().getId().equals("0")) {
                 salida = false;
             }
         }
-        if (jugadores.size() == 0) {
+        if (players.size() == 0) {
             salida = false;
         }
         return salida;
     }
 
-    public void asignarMisiones(String nombre, String id) throws ExcepcionJugador, ExcepcionMision {
-        if (!jugadores.containsKey(nombre)) {
-            //new Errores(103);
-            ExcepcionJugador error = new ExcepcionJugador("103");
+    public void assignMissions(String name, String id) throws PlayerException, MissionException {
+        if (!players.containsKey(name)) {
+            //new Errors(103);
+            PlayerException error = new PlayerException("103");
             throw (error);
-        } /*Comprobamos la mision no ha sido asignada*/ else if (misionesAsignadas.contains(id)) {
-            //new Errores(115);
-            ExcepcionMision error = new ExcepcionMision("115");
+        } /*Comprobamos la mission no ha sido asignada*/ else if (assignedMissions.contains(id)) {
+            //new Errors(115);
+            MissionException error = new MissionException("115");
             throw (error);
-        } else if ((!misiones.containsKey(id))) {
-            //new Errores(116);
-            ExcepcionMision error = new ExcepcionMision("116");
+        } else if ((!missions.containsKey(id))) {
+            //new Errors(116);
+            MissionException error = new MissionException("116");
             throw (error);
-        } else if (!jugadores.get(nombre).getMision().getId().equals("0")) {
-            //new Errores(117);
-            ExcepcionMision error = new ExcepcionMision("117");
+        } else if (!players.get(name).getMision().getId().equals("0")) {
+            //new Errors(117);
+            MissionException error = new MissionException("117");
             throw (error);
         } else {
-            misionesAsignadas.add(id);
-            jugadores.get(nombre).setMision(misiones.get(id));
+            assignedMissions.add(id);
+            players.get(name).setMision(missions.get(id));
             out = "{\n";
-            out = out + "  nombre: \"" + nombre + "\",\n";
-            out = out + "  mision: \"" + misiones.get(id).getDescripcion() + "\"\n";
+            out = out + "  name: \"" + name + "\",\n";
+            out = out + "  mission: \"" + missions.get(id).getDescripcion() + "\"\n";
             out = out + "}\n";
-            Risk.consola.Imprimir(out);
+            Risk.console.Print(out);
         }
     }
 
     /**
      *
      */
-    public void crearMapa() throws ExcepcionGeo {
-        // Código necesario para crear el mapa
-        String linea, partes[];
-        if (mapaCreado) {
-            //new Errores(107);
-            ExcepcionGeo error = new ExcepcionGeo("107");
+    public void createMap() throws GeoException {
+        // Código necesario para crear el map
+        String line, parts[];
+        if (mapCreated) {
+            //new Errors(107);
+            GeoException error = new GeoException("107");
             throw (error);
         } else {
             try {
-                File file = new File("lecPaises.csv");
+                File file = new File("lecCountries.csv");
                 FileReader lector = new FileReader(file);
-                BufferedReader bufferLector = new BufferedReader(lector);
-                while ((linea = bufferLector.readLine()) != null) {
-                    partes = linea.split(";");
-                    mapa.getCasillas().add(new Casilla(paises.get(partes[1]), Integer.parseInt(partes[3]), Integer.parseInt(partes[4])));
+                BufferedReader readBuffer = new BufferedReader(lector);
+                while ((line = readBuffer.readLine()) != null) {
+                    parts = line.split(";");
+                    map.getTiles().add(new Tile(countries.get(parts[1]), Integer.parseInt(parts[3]), Integer.parseInt(parts[4])));
                 }
             } catch (Exception excepcion) {
                 excepcion.printStackTrace();
             }
-            for (Pais pais : paises.values()) {
-                pais.setFronteras(mapa.obtenerFrontera(pais));
+            for (Country country : countries.values()) {
+                country.setBorders(map.getBorder(country));
             }
 
-            mapa.verMapa();
+            map.verMapa();
         }
     }
 
@@ -655,20 +655,20 @@ public class Menu {
      *
      * @param file
      */
-    private void crearJugador(File file) {
-        // Código necesario para crear a los jugadores del RISK
-        String linea, partes[];
+    private void crearPlayer(File file) {
+        // Código necesario para crear a los players del RISK
+        String line, parts[];
         try {
             FileReader lector = new FileReader(file);
-            BufferedReader bufferLector = new BufferedReader(lector);
-            while ((linea = bufferLector.readLine()) != null) {
-                partes = linea.split(";");
+            BufferedReader readBuffer = new BufferedReader(lector);
+            while ((line = readBuffer.readLine()) != null) {
+                parts = line.split(";");
                 try {
-                    crearJugador(partes[0], partes[1]);
-                } catch (ExcepcionGeo error) {
-                    error.imprimirError();
-                } catch (ExcepcionJugador error) {
-                    error.imprimirError();
+                    crearPlayer(parts[0], parts[1]);
+                } catch (GeoException error) {
+                    error.PrintError();
+                } catch (PlayerException error) {
+                    error.PrintError();
                 }
             }
         } catch (IOException excepcion) {
@@ -680,503 +680,503 @@ public class Menu {
      *
      * @param file
      */
-    private void crearJugador(String nombre, String color) throws ExcepcionGeo, ExcepcionJugador {
-        // Código necesario para crear a un jugador a partir de su nombre y color
-        if (!mapaCreado) {
-            //new Errores(106);
-            ExcepcionGeo error = new ExcepcionGeo("106");
+    private void crearPlayer(String name, String color) throws GeoException, PlayerException {
+        // Código necesario para crear a un player a partir de su name y color
+        if (!mapCreated) {
+            //new Errors(106);
+            GeoException error = new GeoException("106");
             throw (error);
-        } else if (!colores.contains(color)) {
-            //new Errores(100);
-            ExcepcionGeo error = new ExcepcionGeo("100");
+        } else if (!colors.contains(color)) {
+            //new Errors(100);
+            GeoException error = new GeoException("100");
             throw (error);
-        } else if (jugadores.containsKey(nombre)) {
-            //new Errores(104);
-            ExcepcionJugador error = new ExcepcionJugador("104");
+        } else if (players.containsKey(name)) {
+            //new Errors(104);
+            PlayerException error = new PlayerException("104");
             throw (error);
-        } /*Comprobamos el color no ha sido ya asignado*/ else if (coloresUsados.contains(color)) {
-            //new Errores(114);
-            ExcepcionJugador error = new ExcepcionJugador("114");
+        } /*Comprobamos el color no ha sido ya asignado*/ else if (usedColors.contains(color)) {
+            //new Errors(114);
+            PlayerException error = new PlayerException("114");
             throw (error);
-        } else if (mapaCreado && colores.contains(color) && !jugadores.containsKey(nombre) && !coloresUsados.contains(color)) {
-            jugadores.put(nombre, new Jugador(nombre, color));
-            out = "{\n  nombre: \"" + nombre + "\",\n  color: \"" + color + "\"\n}\n";
-            Risk.consola.Imprimir(out);
-            coloresUsados.add(color);
-            if (turnos.size() == 0) {
-                jugadorTurno = jugadores.get(nombre);
+        } else if (mapCreated && colors.contains(color) && !players.containsKey(name) && !usedColors.contains(color)) {
+            players.put(name, new Player(name, color));
+            out = "{\n  name: \"" + name + "\",\n  color: \"" + color + "\"\n}\n";
+            Risk.console.Print(out);
+            usedColors.add(color);
+            if (turns.size() == 0) {
+                turnPlayer = players.get(name);
             }
-            turnos.add(nombre);
+            turns.add(name);
             switch (color) {
                 case "AZUL":
-                    EjercitoAzul ejercitoAzul = new EjercitoAzul();
-                    jugadores.get(nombre).setEjercito(ejercitoAzul);
+                    BlueArmy armyAzul = new BlueArmy();
+                    players.get(name).setArmy(armyAzul);
                     break;
                 case "VERDE":
-                    EjercitoVerde ejercitoVerde = new EjercitoVerde();
-                    jugadores.get(nombre).setEjercito(ejercitoVerde);
+                    GreenArmy armyVerde = new GreenArmy();
+                    players.get(name).setArmy(armyVerde);
                     break;
                 case "AMARILLO":
-                    EjercitoAmarillo ejercitoAmarillo = new EjercitoAmarillo();
-                    jugadores.get(nombre).setEjercito(ejercitoAmarillo);
+                    YellowArmy armyAmarillo = new YellowArmy();
+                    players.get(name).setArmy(armyAmarillo);
                     break;
                 case "ROJO":
-                    EjercitoRojo ejercitoRojo = new EjercitoRojo();
-                    jugadores.get(nombre).setEjercito(ejercitoRojo);
+                    RedArmy armyRojo = new RedArmy();
+                    players.get(name).setArmy(armyRojo);
                     break;
                 case "VIOLETA":
-                    EjercitoVioleta ejercitoVioleta = new EjercitoVioleta();
-                    jugadores.get(nombre).setEjercito(ejercitoVioleta);
+                    PurpleArmy armyVioleta = new PurpleArmy();
+                    players.get(name).setArmy(armyVioleta);
                     break;
                 case "CYAN":
-                    EjercitoCyan ejercitoCyan = new EjercitoCyan();
-                    jugadores.get(nombre).setEjercito(ejercitoCyan);
+                    CyanArmy armyCyan = new CyanArmy();
+                    players.get(name).setArmy(armyCyan);
                     break;
             }
         }
     }
 
-    void repartirEjercitos(int numero, String abrevPais) throws ExcepcionGeo, ExcepcionJugador {
+    void distributeArmies(int number, String abrevCountry) throws GeoException, PlayerException {
         String out = new String();
-        if (!paises.containsKey(abrevPais)) {
-            //new Errores(109);
-            ExcepcionGeo error = new ExcepcionGeo("109");
+        if (!countries.containsKey(abrevCountry)) {
+            //new Errors(109);
+            GeoException error = new GeoException("109");
             throw (error);
-        } else if (!jugadorTurno.getPaises().contains(paises.get(abrevPais))) {
-            //new Errores(110);
-            ExcepcionJugador error = new ExcepcionJugador("110");
+        } else if (!turnPlayer.getCountries().contains(countries.get(abrevCountry))) {
+            //new Errors(110);
+            PlayerException error = new PlayerException("110");
             throw (error);
-        } else if (jugadorTurno.getNumeroEjercitos() == 0) {
-            //new Errores(119);
-            ExcepcionJugador error = new ExcepcionJugador("119");
+        } else if (turnPlayer.getArmyNumbers() == 0) {
+            //new Errors(119);
+            PlayerException error = new PlayerException("119");
             throw (error);
         } else {
-            int numeroDisponibles = jugadorTurno.getNumeroEjercitos();
-            if (numero != 0) {
-                if (numero >= numeroDisponibles) {
-                    paises.get(abrevPais).addNumeroEjercito(numeroDisponibles);
-                    jugadorTurno.setNumeroEjercitos(0);
+            int numberDisponibles = turnPlayer.getArmyNumbers();
+            if (number != 0) {
+                if (number >= numberDisponibles) {
+                    countries.get(abrevCountry).addArmyNumber(numberDisponibles);
+                    turnPlayer.setArmyNumbers(0);
                 } else {
-                    paises.get(abrevPais).addNumeroEjercito(numero);
-                    jugadorTurno.setNumeroEjercitos(numeroDisponibles - numero);
+                    countries.get(abrevCountry).addArmyNumber(number);
+                    turnPlayer.setArmyNumbers(numberDisponibles - number);
                 }
                 out = "{\n";
-                out += "  pais: \"" + paises.get(abrevPais).getNombre() + "\",\n";
-                out += "  jugador: \"" + jugadorTurno.getNombre() + "\",\n";
-                out += "  numeroEjercitosAsignados: " + numero + ",\n";
-                out += "  numeroEjercitosTotales: " + paises.get(abrevPais).getNumeroEjercito() + ",\n";
-                out += "  paisesOcupadosContinente: [";
-                Iterator<Pais> itPais = paises.get(abrevPais).getContinente().getPaises().iterator();
-                while (itPais.hasNext()) {
-                    Pais pais = itPais.next();
-                    out += " { \"" + pais.getNombre() + "\", " + pais.getNumeroEjercito() + " }";
-                    if (itPais.hasNext()) {
+                out += "  country: \"" + countries.get(abrevCountry).getName() + "\",\n";
+                out += "  player: \"" + turnPlayer.getName() + "\",\n";
+                out += "  numberArmiesAsignados: " + number + ",\n";
+                out += "  numberArmiesTotales: " + countries.get(abrevCountry).getArmyNumber() + ",\n";
+                out += "  countriesOcupadoscontinent: [";
+                Iterator<Country> itCountry = countries.get(abrevCountry).getContinent().getCountries().iterator();
+                while (itCountry.hasNext()) {
+                    Country country = itCountry.next();
+                    out += " { \"" + country.getName() + "\", " + country.getArmyNumber() + " }";
+                    if (itCountry.hasNext()) {
                         out = out + ", ";
                     } else {
                         out += "]\n";
                     }
                 }
                 out += "}";
-                Risk.consola.Imprimir(out);
+                Risk.console.Print(out);
             }
         }
     }
 
-    void asignarCarta(Jugador jugador, String idCarta) throws ExcepcionCarta, ExcepcionComando {
+    void assignCard(Player player, String idCard) throws CardException, CommandException {
 
-        String[] partes = idCarta.split("&");
+        String[] parts = idCard.split("&");
         //Comprobamos idCorrecto
-        if (partes.length != 2) {
-            //new Errores(125);
-            ExcepcionCarta error = new ExcepcionCarta("125");
+        if (parts.length != 2) {
+            //new Errors(125);
+            CardException error = new CardException("125");
             throw (error);
-        } else if ((!paises.containsKey(partes[1])) || !(partes[0].equals("Fusilero")
-                || partes[0].equals("Granadero") || partes[0].equals("DeCaballo")
-                || partes[0].equals("DeCamello") || partes[0].equals("DeCampanha")
-                || partes[0].equals("Antiaerea"))) {
-            //new Errores(125);
-            ExcepcionCarta error = new ExcepcionCarta("125");
+        } else if ((!countries.containsKey(parts[1])) || !(parts[0].equals("Rifleman")
+                || parts[0].equals("Grenadier") || parts[0].equals("OfHorse")
+                || parts[0].equals("OfCamel") || parts[0].equals("OfCampaign")
+                || parts[0].equals("Antiair"))) {
+            //new Errors(125);
+            CardException error = new CardException("125");
             throw (error);
         }
-        /*if(!batallaGanada){
-            //new Errores(99);
-            ExcepcionComando error = new ExcepcionComando("99");
+        /*if(!battleWon){
+            //new Errors(99);
+            CommandException error = new CommandException("99");
             throw(error);
         }*/
         //Comprobamos que la carta no ha sido asignada
-        if (cartas.containsKey(idCarta)) {
-            //new Errores(126);
-            ExcepcionCarta error = new ExcepcionCarta("126");
+        if (cards.containsKey(idCard)) {
+            //new Errors(126);
+            CardException error = new CardException("126");
             throw (error);
         } else {
-            switch (partes[0]) {
-                case "Fusilero":
-                    Fusilero fusilero = new Fusilero(paises.get(partes[1]), jugador);
-                    cartas.put(idCarta, fusilero);
+            switch (parts[0]) {
+                case "Rifleman":
+                    Rifleman fusilero = new Rifleman(countries.get(parts[1]), player);
+                    cards.put(idCard, fusilero);
                     break;
-                case "Granadero":
-                    Granadero granadero = new Granadero(paises.get(partes[1]), jugador);
-                    cartas.put(idCarta, granadero);
+                case "Grenadier":
+                    Grenadier granadero = new Grenadier(countries.get(parts[1]), player);
+                    cards.put(idCard, granadero);
                     break;
-                case "DeCaballo":
-                    DeCaballo deCaballo = new DeCaballo(paises.get(partes[1]), jugador);
-                    cartas.put(idCarta, deCaballo);
+                case "OfHorse":
+                    OfHorse deCaballo = new OfHorse(countries.get(parts[1]), player);
+                    cards.put(idCard, deCaballo);
                     break;
-                case "DeCamello":
-                    DeCamello deCamello = new DeCamello(paises.get(partes[1]), jugador);
-                    cartas.put(idCarta, deCamello);
+                case "OfCamel":
+                    OfCamel deCamello = new OfCamel(countries.get(parts[1]), player);
+                    cards.put(idCard, deCamello);
                     break;
-                case "DeCampanha":
-                    DeCampanha deCampanha = new DeCampanha(paises.get(partes[1]), jugador);
-                    cartas.put(idCarta, deCampanha);
+                case "OfCampaign":
+                    OfCampaign deCampanha = new OfCampaign(countries.get(parts[1]), player);
+                    cards.put(idCard, deCampanha);
                     break;
-                case "Antiaerea":
-                    Antiaerea artilleria = new Antiaerea(paises.get(partes[1]), jugador);
-                    cartas.put(idCarta, artilleria);
+                case "Antiair":
+                    Antiair artilleria = new Antiair(countries.get(parts[1]), player);
+                    cards.put(idCard, artilleria);
                     break;
 
             }
 
-            //cartas.put(idCarta, carta);
-            jugador.getCartas().add(cartas.get(idCarta));
-            out = cartas.get(idCarta).toString();
-            Risk.consola.Imprimir(out);
+            //cards.put(idCard, carta);
+            player.getCards().add(cards.get(idCard));
+            out = cards.get(idCard).toString();
+            Risk.console.Print(out);
         }
-        if (jugadorTurno.getCartas().size() >= 6) {
-            cambiarCartasTodas();
+        if (turnPlayer.getCards().size() >= 6) {
+            changeAllCard();
         }
     }
 
     //SIN ACABAR
-    void cambiarCartasTodas() {
+    void changeAllCard() {
 
-        ArrayList<String> combinacion = maximoCambio(jugadorTurno);
+        ArrayList<String> combinacion = maximoCambio(turnPlayer);
         try {
-            cambiarCartas(jugadorTurno, combinacion.get(0), combinacion.get(1), combinacion.get(2));
-            combinacion = maximoCambio(jugadorTurno);
-            cambiarCartas(jugadorTurno, combinacion.get(0), combinacion.get(1), combinacion.get(2));
-        } catch (ExcepcionCarta excepcion) {
-            excepcion.imprimirError();
+            changeCards(turnPlayer, combinacion.get(0), combinacion.get(1), combinacion.get(2));
+            combinacion = maximoCambio(turnPlayer);
+            changeCards(turnPlayer, combinacion.get(0), combinacion.get(1), combinacion.get(2));
+        } catch (CardException excepcion) {
+            excepcion.PrintError();
         };
 
     }
 
-    void cambiarCartas(Jugador jugador, String carta1, String carta2, String carta3) throws ExcepcionCarta {
+    void changeCards(Player player, String carta1, String carta2, String carta3) throws CardException {
         //Indica si se realiza el cambio
         boolean cambio = false;
-        int ejercitos = 0;
-        ArrayList<Carta> cartasCambiar = new ArrayList<>();
+        int armies = 0;
+        ArrayList<Card> cardsCambiar = new ArrayList<>();
         //Comprobamos carta existe, es decir, si ha sido asignada anteriormente
-        if (!(cartas.keySet().contains(carta1) && cartas.keySet().contains(carta2) && cartas.keySet().contains(carta3))) {
-            //new Errores(123);
-            ExcepcionCarta error = new ExcepcionCarta("123");
+        if (!(cards.keySet().contains(carta1) && cards.keySet().contains(carta2) && cards.keySet().contains(carta3))) {
+            //new Errors(123);
+            CardException error = new CardException("123");
             throw (error);
-        } //Comprobamos que la carta ha sido asignada al jugador        
-        else if (!(jugador.getCartas().contains(cartas.get(carta1)) && jugador.getCartas().contains(cartas.get(carta2)) && jugador.getCartas().contains(cartas.get(carta3)))) {
-            //new Errores(122);
-            ExcepcionCarta error = new ExcepcionCarta("122");
+        } //Comprobamos que la carta ha sido asignada al player        
+        else if (!(player.getCards().contains(cards.get(carta1)) && player.getCards().contains(cards.get(carta2)) && player.getCards().contains(cards.get(carta3)))) {
+            //new Errors(122);
+            CardException error = new CardException("122");
             throw (error);
         } else {
             int infF = 0, infG = 0, cabCam = 0, cabCab = 0, artCam = 0, artA = 0;
-            //Añadimos las cartas a una lista para acceder a ellas con facilidad
-            cartasCambiar.add(cartas.get(carta1));
-            cartasCambiar.add(cartas.get(carta2));
-            cartasCambiar.add(cartas.get(carta3));
-            for (Carta carta : cartasCambiar) {
-                if (carta.getTipo().equals("Fusilero")) {
+            //Añadimos las cards a una lista para acceder a ellas con facilidad
+            cardsCambiar.add(cards.get(carta1));
+            cardsCambiar.add(cards.get(carta2));
+            cardsCambiar.add(cards.get(carta3));
+            for (Card carta : cardsCambiar) {
+                if (carta.getType().equals("Rifleman")) {
                     infF++;
-                } else if (carta.getTipo().equals("Granadero")) {
+                } else if (carta.getType().equals("Grenadier")) {
                     infG++;
-                } else if (carta.getTipo().equals("DeCaballo")) {
+                } else if (carta.getType().equals("OfHorse")) {
                     cabCab++;
-                } else if (carta.getTipo().equals("DeCamello")) {
+                } else if (carta.getType().equals("OfCamel")) {
                     cabCam++;
-                } else if (carta.getTipo().equals("DeCampanha")) {
+                } else if (carta.getType().equals("OfCampaign")) {
                     artCam++;
                 } else {
                     artA++;
                 }
             }
-            //Realizamos el cambio acorde a las cartas
+            //Realizamos el cambio acorde a las cards
             if (infF + infG == 3) {
-                ejercitos = 6;
+                armies = 6;
                 cambio = true;
             } else if (cabCab + cabCam == 3) {
-                ejercitos = 8;
+                armies = 8;
                 cambio = true;
             } else if (artCam + artA == 3) {
-                ejercitos = 10;
+                armies = 10;
                 cambio = true;
             } else if ((infF + infG == 1) && (cabCab + cabCam == 1) && (artCam + artA == 1)) {
-                ejercitos = 12;
+                armies = 12;
                 cambio = true;
             } else {
-                //new Errores(121);
-                ExcepcionCarta error = new ExcepcionCarta("121");
+                //new Errors(121);
+                CardException error = new CardException("121");
                 throw (error);
             }
             //Si se ha realizado el cambio, se hace lo siguiente
             if (cambio) {
-                ejercitos += infG + infF * 2 + cabCam * 2 + cabCab * 3 + artA * 3 + artCam * 4;
-                jugador.setNumeroEjercitos(jugador.getNumeroEjercitos() + ejercitos);
-                for (Carta carta : cartasCambiar) {
-                    //Quitamos las cartas al jugador
-                    cartas.remove(carta.obtenerNombre());
-                    jugador.getCartas().remove(carta);
-                    //Si la carta es de un país del jugador añadimos un ejército
+                armies += infG + infF * 2 + cabCam * 2 + cabCab * 3 + artA * 3 + artCam * 4;
+                player.setArmyNumbers(player.getArmyNumbers() + armies);
+                for (Card carta : cardsCambiar) {
+                    //Quitamos las cards al player
+                    cards.remove(carta.getName());
+                    player.getCards().remove(carta);
+                    //Si la carta es de un país del player añadimos un ejército
                     //adicional
-                    if (carta.getPais().getJugador().equals(jugador)) {
-                        carta.getPais().addNumeroEjercito(1);
-                        ejercitos++;
+                    if (carta.getCountry().getPlayer().equals(player)) {
+                        carta.getCountry().addArmyNumber(1);
+                        armies++;
                     }
                 }
                 //Mensaje de salida
                 out = "{\n";
-                out = out + "  cartasCambio: [ \"" + carta1 + "\", \"" + carta2 + "\", \"" + carta3 + "\" ],\n";
-                out = out + "  cartasQuedan: [ ";
-                for (int i = 0; i < jugador.getCartas().size(); i++) {
-                    out = out + jugador.getCartas().get(i).obtenerNombre();
-                    if (i != jugador.getCartas().size() - 1) {
+                out = out + "  cardsCambio: [ \"" + carta1 + "\", \"" + carta2 + "\", \"" + carta3 + "\" ],\n";
+                out = out + "  cardsQuedan: [ ";
+                for (int i = 0; i < player.getCards().size(); i++) {
+                    out = out + player.getCards().get(i).getName();
+                    if (i != player.getCards().size() - 1) {
                         out = out + ", ";
                     }
                 }
-                out = out + " ],\n  numeroEjercitosCambiados: " + ejercitos + ",\n";
-                out = out + "  numEjercitosRearme: " + jugadorTurno.getNumeroEjercitos() + "\n}";
-                Risk.consola.Imprimir(out);
+                out = out + " ],\n  numberArmiesCambiados: " + armies + ",\n";
+                out = out + "  numArmiesRearme: " + turnPlayer.getArmyNumbers() + "\n}";
+                Risk.console.Print(out);
             }
         }
     }
 
-    void atacar(String abrevPais1, String abrevPais2) throws ExcepcionGeo, ExcepcionJugador {
-        if ((!paises.keySet().contains(abrevPais1)) || (!paises.keySet().contains(abrevPais2))) {
-            //new Errores(109);
-            ExcepcionGeo error = new ExcepcionGeo("109");
+    void attack(String abrevCountry1, String abrevCountry2) throws GeoException, PlayerException {
+        if ((!countries.keySet().contains(abrevCountry1)) || (!countries.keySet().contains(abrevCountry2))) {
+            //new Errors(109);
+            GeoException error = new GeoException("109");
             throw (error);
         } else {
-            Pais pais1 = paises.get(abrevPais1);
-            Pais pais2 = paises.get(abrevPais2);
-            if (!pais1.getJugador().equals(jugadorTurno)) {
-                //new Errores(110);
-                ExcepcionJugador error = new ExcepcionJugador("110");
+            Country country1 = countries.get(abrevCountry1);
+            Country country2 = countries.get(abrevCountry2);
+            if (!country1.getPlayer().equals(turnPlayer)) {
+                //new Errors(110);
+                PlayerException error = new PlayerException("110");
                 throw (error);
-            } else if (pais2.getJugador().equals(jugadorTurno)) {
-                //new Errores(111);
-                ExcepcionJugador error = new ExcepcionJugador("111");
+            } else if (country2.getPlayer().equals(turnPlayer)) {
+                //new Errors(111);
+                PlayerException error = new PlayerException("111");
                 throw (error);
-            } else if (!pais1.getFronteras().contains(pais2)) {
-                //new Errores(112);
-                ExcepcionGeo error = new ExcepcionGeo("112");
+            } else if (!country1.getBorders().contains(country2)) {
+                //new Errors(112);
+                GeoException error = new GeoException("112");
                 throw (error);
-            } else if (pais1.getNumeroEjercito() == 1) {
-                //new Errores(124);
-                ExcepcionJugador error = new ExcepcionJugador("124");
+            } else if (country1.getArmyNumber() == 1) {
+                //new Errors(124);
+                PlayerException error = new PlayerException("124");
                 throw (error);
             } else {
-                ArrayList<Integer> dadosAtaque = Dado.dadoAtaque(pais1.getNumeroEjercito());
-                ArrayList<Integer> dadosDefensa = Dado.dadoDefensa(pais2.getNumeroEjercito());
-                String dados1 = new String();
-                dados1 = "";
-                String dados2 = new String();
-                dados2 = "";
-                for (int i = dadosAtaque.size() - 1; i >= 0; i--) {
-                    dados1 = dados1 + dadosAtaque.get(i).intValue();
+                ArrayList<Integer> dicesAtaque = Dice.attackDice(country1.getArmyNumber());
+                ArrayList<Integer> dicesDefensa = Dice.defenseDice(country2.getArmyNumber());
+                String dices1 = new String();
+                dices1 = "";
+                String dices2 = new String();
+                dices2 = "";
+                for (int i = dicesAtaque.size() - 1; i >= 0; i--) {
+                    dices1 = dices1 + dicesAtaque.get(i).intValue();
                     if (i != 0) {
-                        dados1 = dados1 + "x";
+                        dices1 = dices1 + "x";
                     }
                 }
-                for (int i = dadosDefensa.size() - 1; i >= 0; i--) {
-                    dados2 = dados2 + dadosDefensa.get(i).intValue();
+                for (int i = dicesDefensa.size() - 1; i >= 0; i--) {
+                    dices2 = dices2 + dicesDefensa.get(i).intValue();
                     if (i != 0) {
-                        dados2 = dados2 + "x";
+                        dices2 = dices2 + "x";
                     }
                 }
-                atacar(abrevPais1, dados1, abrevPais2, dados2);
+                attack(abrevCountry1, dices1, abrevCountry2, dices2);
             }
         }
     }
 
-    void atacar(String abrevPais1, String dadosAtaque, String abrevPais2, String dadosDefensa) throws ExcepcionGeo, ExcepcionJugador {
-        int dado = 0, conquista = 0, ejercitosAtaque1 = 0, ejercitosAtaque2 = 0, ejercitosDefensa1 = 0, ejercitosDefensa2 = 0;
-        ArrayList<Integer> dadoAtaque = new ArrayList<>();
-        ArrayList<Integer> dadoDefensa = new ArrayList<>();
+    void attack(String abrevCountry1, String dicesAtaque, String abrevCountry2, String dicesDefensa) throws GeoException, PlayerException {
+        int dice = 0, conquista = 0, armysAtaque1 = 0, armysAtaque2 = 0, armysDefensa1 = 0, armysDefensa2 = 0;
+        ArrayList<Integer> attackDice = new ArrayList<>();
+        ArrayList<Integer> defenseDice = new ArrayList<>();
 
-        //Convertimos las Strings de dados a ArrayList de Integer
-        //No se pueden hacer ArrayList de tipo primitivo int, por eso usamos
+        //Convertimos las Strings de dices a ArrayList de Integer
+        //No se pueden hacer ArrayList de type primitivo int, por eso usamos
         //Integer
-        String partes[] = partes = dadosAtaque.split("x");
-        for (String num : partes) {
-            dadoAtaque.add(Integer.valueOf(num));
+        String parts[] = parts = dicesAtaque.split("x");
+        for (String num : parts) {
+            attackDice.add(Integer.valueOf(num));
         }
-        partes = dadosDefensa.split("x");
-        for (String num : partes) {
-            dadoDefensa.add(Integer.valueOf(num));
+        parts = dicesDefensa.split("x");
+        for (String num : parts) {
+            defenseDice.add(Integer.valueOf(num));
         }
 
         //Hacemos comprobaciones de erroes
-        if (!paises.keySet().contains(abrevPais1) || !paises.keySet().contains(abrevPais2)) {
-            //new Errores(109);
-            ExcepcionGeo error = new ExcepcionGeo("109");
+        if (!countries.keySet().contains(abrevCountry1) || !countries.keySet().contains(abrevCountry2)) {
+            //new Errors(109);
+            GeoException error = new GeoException("109");
             throw (error);
-        } else if (!paises.get(abrevPais1).getJugador().equals(jugadorTurno)) {
-            //new Errores(110);
-            ExcepcionJugador error = new ExcepcionJugador("110");
+        } else if (!countries.get(abrevCountry1).getPlayer().equals(turnPlayer)) {
+            //new Errors(110);
+            PlayerException error = new PlayerException("110");
             throw (error);
-        } else if (paises.get(abrevPais2).getJugador().equals(jugadorTurno)) {
-            //new Errores(111);
-            ExcepcionJugador error = new ExcepcionJugador("111");
+        } else if (countries.get(abrevCountry2).getPlayer().equals(turnPlayer)) {
+            //new Errors(111);
+            PlayerException error = new PlayerException("111");
             throw (error);
-        } else if (!paises.get(abrevPais1).getFronteras().contains(paises.get(abrevPais2))) {
-            //new Errores(112);
-            ExcepcionGeo error = new ExcepcionGeo("112");
+        } else if (!countries.get(abrevCountry1).getBorders().contains(countries.get(abrevCountry2))) {
+            //new Errors(112);
+            GeoException error = new GeoException("112");
             throw (error);
-        } else if (paises.get(abrevPais1).getNumeroEjercito() < 2) {
-            //new Errores(124);
-            ExcepcionJugador error = new ExcepcionJugador("124");
+        } else if (countries.get(abrevCountry1).getArmyNumber() < 2) {
+            //new Errors(124);
+            PlayerException error = new PlayerException("124");
             throw (error);
         } else {
 
-            ejercitosAtaque1 = paises.get(abrevPais1).getNumeroEjercito();
-            ejercitosDefensa1 = paises.get(abrevPais2).getNumeroEjercito();
+            armysAtaque1 = countries.get(abrevCountry1).getArmyNumber();
+            armysDefensa1 = countries.get(abrevCountry2).getArmyNumber();
 
-            //Actualizamos los valores del dado de ataque para la jerarquía ejércitos        
-            dadoAtaque = paises.get(abrevPais1).getJugador().getEjercito().ataque(dadoAtaque);
+            //Actualizamos los valores del dice de attack para la jerarquía ejércitos        
+            attackDice = countries.get(abrevCountry1).getPlayer().getArmy().attack(attackDice);
 
-            //Actualizamos el dado en función de los ejercitos del atacante
-            dado = Integer.min(dadoAtaque.size(), dadoDefensa.size());
+            //Actualizamos el dice en función de los armies del atacante
+            dice = Integer.min(attackDice.size(), defenseDice.size());
 
-            //Comparamos los dados
-            for (int i = 0; i < dado; i++) {
-                //Si el dado de ataque es mayor, quitamos un ejército a los
+            //Comparamos los dices
+            for (int i = 0; i < dice; i++) {
+                //Si el dice de attack es mayor, quitamos un ejército a los
                 //defensores
-                if (dadoAtaque.get(i).intValue() > dadoDefensa.get(i).intValue()) {
-                    paises.get(abrevPais2).addNumeroEjercito(-1);
-                } //Si el dado de defensa es mayor o igual, quitamos un ejército a los
+                if (attackDice.get(i).intValue() > defenseDice.get(i).intValue()) {
+                    countries.get(abrevCountry2).addArmyNumber(-1);
+                } //Si el dice de defensa es mayor o igual, quitamos un ejército a los
                 //atacantes
                 else {
-                    paises.get(abrevPais1).addNumeroEjercito(-1);
+                    countries.get(abrevCountry1).addArmyNumber(-1);
                 }
             }
 
             //Si no le quedan ejércitos al defensor, se hace la conquista
-            if (paises.get(abrevPais2).getNumeroEjercito() == 0) {
+            if (countries.get(abrevCountry2).getArmyNumber() == 0) {
                 //Comprobamos cuantos ejércitos puede mover el país atacante, si
                 //tiene menos de 4, tendremos que sacar el mayor número posible de
                 //ejércitos para conquistar el nuevo país
-                conquista = Integer.min(dadoAtaque.size(), paises.get(abrevPais1).getNumeroEjercito() - 1);
+                conquista = Integer.min(attackDice.size(), countries.get(abrevCountry1).getArmyNumber() - 1);
                 //Se actualiza el número de ejércitos en los países
-                paises.get(abrevPais1).addNumeroEjercito(-conquista);
-                paises.get(abrevPais2).addNumeroEjercito(conquista);
-                paises.get(abrevPais2).getJugador().getPaises().remove(paises.get(abrevPais2));
-                paises.get(abrevPais2).setJugador(jugadorTurno);
-                jugadorTurno.getPaises().add(paises.get(abrevPais2));
+                countries.get(abrevCountry1).addArmyNumber(-conquista);
+                countries.get(abrevCountry2).addArmyNumber(conquista);
+                countries.get(abrevCountry2).getPlayer().getCountries().remove(countries.get(abrevCountry2));
+                countries.get(abrevCountry2).setPlayer(turnPlayer);
+                turnPlayer.getCountries().add(countries.get(abrevCountry2));
 
-                batallaGanada = true;
-                paises.get(abrevPais2).aumentarVecesOcupado();
+                battleWon = true;
+                countries.get(abrevCountry2).incrementTimesOccupied();
             }
 
-            ejercitosAtaque2 = paises.get(abrevPais1).getNumeroEjercito();
-            ejercitosDefensa2 = paises.get(abrevPais2).getNumeroEjercito();
+            armysAtaque2 = countries.get(abrevCountry1).getArmyNumber();
+            armysDefensa2 = countries.get(abrevCountry2).getArmyNumber();
 
             //Creamos el mensaje de salida
             String out = new String();
             out += "{\n";
-            out += "dadosAtaque: [ ";
-            for (int i = 0; i < dadoAtaque.size(); i++) {
-                out += dadoAtaque.get(i);
-                if (i < dadoAtaque.size() - 1) {
+            out += "dicesAtaque: [ ";
+            for (int i = 0; i < attackDice.size(); i++) {
+                out += attackDice.get(i);
+                if (i < attackDice.size() - 1) {
                     out += ", ";
                 } else {
                     out += " ],\n";
                 }
             }
-            out += "dadosDefensa: [ ";
-            for (int i = 0; i < dadoDefensa.size(); i++) {
-                out += dadoDefensa.get(i);
-                if (i < dadoDefensa.size() - 1) {
+            out += "dicesDefensa: [ ";
+            for (int i = 0; i < defenseDice.size(); i++) {
+                out += defenseDice.get(i);
+                if (i < defenseDice.size() - 1) {
                     out += ", ";
                 } else {
                     out += " ],\n";
                 }
             }
-            out += "ejercitospaisAtaque: [ " + ejercitosAtaque1 + ", " + ejercitosAtaque2 + " ],\n";
-            out += "ejercitospaisDefensa: [ " + ejercitosDefensa1 + ", " + ejercitosDefensa2 + " ],\n";
-            out += "paisAtaquePerteneceA: \"" + jugadorTurno.getNombre() + "\",\n";
-            out += "paisDefensaPerteneceA: \"" + paises.get(abrevPais2).getJugador().getNombre() + "\",\n";
-            out += "continenteConquistado: \"";
-            if (jugadorTurno.getContinentes().contains(paises.get(abrevPais2).getContinente())) {
-                out += paises.get(abrevPais2).getContinente().getNombre() + "\"\n";
+            out += "armyscountryAtaque: [ " + armysAtaque1 + ", " + armysAtaque2 + " ],\n";
+            out += "armyscountryDefensa: [ " + armysDefensa1 + ", " + armysDefensa2 + " ],\n";
+            out += "countryAtaquePerteneceA: \"" + turnPlayer.getName() + "\",\n";
+            out += "countryDefensaPerteneceA: \"" + countries.get(abrevCountry2).getPlayer().getName() + "\",\n";
+            out += "continentConquistado: \"";
+            if (turnPlayer.getContinents().contains(countries.get(abrevCountry2).getContinent())) {
+                out += countries.get(abrevCountry2).getContinent().getName() + "\"\n";
             } else {
                 out += "null\"\n";
             }
             out += "}";
-            Risk.consola.Imprimir(out);
+            Risk.console.Print(out);
         }
     }
 
-    public void rearmar(String abrevPais1, int numEjercitos, String abrevPais2) throws ExcepcionGeo, ExcepcionJugador {
+    public void rearm(String abrevCountry1, int numArmies, String abrevCountry2) throws GeoException, PlayerException {
         String out = new String();
-        if ((!paises.keySet().contains(abrevPais1)) || (!paises.keySet().contains(abrevPais2))) {
-            //new Errores(109);
-            ExcepcionGeo error = new ExcepcionGeo("109");
+        if ((!countries.keySet().contains(abrevCountry1)) || (!countries.keySet().contains(abrevCountry2))) {
+            //new Errors(109);
+            GeoException error = new GeoException("109");
             throw (error);
         } else {
-            Pais pais1 = paises.get(abrevPais1);
-            Pais pais2 = paises.get(abrevPais2);
-            if ((!pais1.getJugador().equals(jugadorTurno)) || (!pais2.getJugador().equals(jugadorTurno))) {
-                //new Errores(110);
-                ExcepcionJugador error = new ExcepcionJugador("110");
+            Country country1 = countries.get(abrevCountry1);
+            Country country2 = countries.get(abrevCountry2);
+            if ((!country1.getPlayer().equals(turnPlayer)) || (!country2.getPlayer().equals(turnPlayer))) {
+                //new Errors(110);
+                PlayerException error = new PlayerException("110");
                 throw (error);
-            } else if (!pais1.getFronteras().contains(pais2)) {
-                //new Errores(112);
-                ExcepcionGeo error = new ExcepcionGeo("112");
+            } else if (!country1.getBorders().contains(country2)) {
+                //new Errors(112);
+                GeoException error = new GeoException("112");
                 throw (error);
-            } else if (pais1.getNumeroEjercito() < 1) {
-                //new Errores(124);
-                ExcepcionJugador error = new ExcepcionJugador("124");
+            } else if (country1.getArmyNumber() < 1) {
+                //new Errors(124);
+                PlayerException error = new PlayerException("124");
                 throw (error);
             } else {
-                int init1 = pais1.getNumeroEjercito();
-                int init2 = pais2.getNumeroEjercito();
-                if (numEjercitos >= pais1.getNumeroEjercito()) {
-                    pais2.addNumeroEjercito(pais1.getNumeroEjercito() - 1);
-                    pais1.setNumeroEjercito(1);
+                int init1 = country1.getArmyNumber();
+                int init2 = country2.getArmyNumber();
+                if (numArmies >= country1.getArmyNumber()) {
+                    country2.addArmyNumber(country1.getArmyNumber() - 1);
+                    country1.setArmyNumber(1);
                 } else {
-                    pais2.addNumeroEjercito(numEjercitos);
-                    pais1.addNumeroEjercito(-numEjercitos);
+                    country2.addArmyNumber(numArmies);
+                    country1.addArmyNumber(-numArmies);
                 }
                 out = "{\n";
-                out = out + "  numeroEjercitosInicialesOrigen: " + init1 + ",\n";
-                out = out + "  numeroEjercitosInicialesDestino: " + init2 + ",\n";
-                out = out + "  numeroEjercitosFinalesOrigen: " + pais1.getNumeroEjercito() + ",\n";
-                out = out + "  numeroEjercitosFinalesDestino: " + pais2.getNumeroEjercito() + ",\n";
+                out = out + "  numberArmiesInicialesOrigen: " + init1 + ",\n";
+                out = out + "  numberArmiesInicialesDestino: " + init2 + ",\n";
+                out = out + "  numberArmiesFinalesOrigen: " + country1.getArmyNumber() + ",\n";
+                out = out + "  numberArmiesFinalesDestino: " + country2.getArmyNumber() + ",\n";
                 out = out + "}";
-                Risk.consola.Imprimir(out);
+                Risk.console.Print(out);
             }
         }
     }
 
     void acabarTurno() {
-        jugadorTurno = jugadores.get(turnos.get((turnos.indexOf(jugadorTurno.getNombre()) + 1) % turnos.size()));
-        batallaGanada = false;
+        turnPlayer = players.get(turns.get((turns.indexOf(turnPlayer.getName()) + 1) % turns.size()));
+        battleWon = false;
         //Imprimimos por pantalla y al archivo un mensaje
         out = "{\n";
-        out = out + "  nombre: \"" + jugadorTurno.getNombre() + "\"\n";
-        out = out + "  numeroEjercitosRearmar: " + jugadorTurno.getNumeroEjercitos() + "\n";
+        out = out + "  name: \"" + turnPlayer.getName() + "\"\n";
+        out = out + "  numberArmiesRearmar: " + turnPlayer.getArmyNumbers() + "\n";
         out = out + "}\n";
-        Risk.consola.Imprimir(out);
-        //Escogemos el maximo entre 3 y el numero de paises entre 3 para rearmar al principio del turno
-        jugadorTurno.addNumeroEjercitos(Integer.max((int) jugadorTurno.getPaises().size() / 3, 3));
+        Risk.console.Print(out);
+        //Escogemos el maximo entre 3 y el number de countries entre 3 para rearm al principio del turno
+        turnPlayer.addArmyNumbers(Integer.max((int) turnPlayer.getCountries().size() / 3, 3));
 
-        if (!jugadorTurno.getContinentes().isEmpty()) {
-            for (Continente continente : jugadorTurno.getContinentes()) {
-                if (continente.getAbreviatura().equals("Asia")) {
-                    jugadorTurno.addNumeroEjercitos(7);
-                } else if (continente.getAbreviatura().equals("AméricaNorte") || continente.getAbreviatura().equals("Oceanía")) {
-                    jugadorTurno.addNumeroEjercitos(5);
-                } else if (continente.getAbreviatura().equals("África")) {
-                    jugadorTurno.addNumeroEjercitos(3);
-                } else if (continente.getAbreviatura().equals("AméricaSur") || continente.getAbreviatura().equals("Oceanía")) {
-                    jugadorTurno.addNumeroEjercitos(2);
+        if (!turnPlayer.getContinents().isEmpty()) {
+            for (Continent continent : turnPlayer.getContinents()) {
+                if (continent.getAbreviatura().equals("Asia")) {
+                    turnPlayer.addArmyNumbers(7);
+                } else if (continent.getAbreviatura().equals("AméricaNorte") || continent.getAbreviatura().equals("Oceanía")) {
+                    turnPlayer.addArmyNumbers(5);
+                } else if (continent.getAbreviatura().equals("África")) {
+                    turnPlayer.addArmyNumbers(3);
+                } else if (continent.getAbreviatura().equals("AméricaSur") || continent.getAbreviatura().equals("Oceanía")) {
+                    turnPlayer.addArmyNumbers(2);
                 }
             }
         }
@@ -1184,115 +1184,115 @@ public class Menu {
     }
 
     //Método para asignar ejércitos iniciales para poder ocupar con un ejército en
-    //asignar paises
-    void repartirEjercitosIniciales() {
-        int ejercitos;
-        switch (jugadores.keySet().size()) {
+    //asignar countries
+    void distributeArmiesIniciales() {
+        int armies;
+        switch (players.keySet().size()) {
             case 3:
-                ejercitos = 35;
+                armies = 35;
                 break;
             case 4:
-                ejercitos = 30;
+                armies = 30;
                 break;
             case 5:
-                ejercitos = 25;
+                armies = 25;
                 break;
             case 6:
-                ejercitos = 20;
+                armies = 20;
                 break;
             default:
-                ejercitos = 0;
+                armies = 0;
                 break;
         }
 
-        for (String nombre : jugadores.keySet()) {
-            jugadores.get(nombre).setNumeroEjercitos(ejercitos);
+        for (String name : players.keySet()) {
+            players.get(name).setArmyNumbers(armies);
         }
 
     }
 
-    ArrayList<String> maximoCambio(Jugador jugador) {
+    ArrayList<String> maximoCambio(Player player) {
 
         ArrayList<String> combinacion = new ArrayList<>();
-        int suma = 0;
+        int sum = 0;
         int infF = 0, infG = 0, cabCam = 0, cabCab = 0, artCam = 0, artA = 0;
-        ArrayList<String> tipos = new ArrayList<>();
+        ArrayList<String> types = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-            tipos.add("");
+            types.add("");
         }
-        //Contamos el numero de cartas
-        for (Carta carta : jugadorTurno.getCartas()) {
-            if (carta.getTipo().equals("Fusilero")) {
+        //Contamos el number de cards
+        for (Card carta : turnPlayer.getCards()) {
+            if (carta.getType().equals("Rifleman")) {
                 infF++;
-            } else if (carta.getTipo().equals("Granadero")) {
+            } else if (carta.getType().equals("Grenadier")) {
                 infG++;
-            } else if (carta.getTipo().equals("DeCaballo")) {
+            } else if (carta.getType().equals("OfHorse")) {
                 cabCab++;
-            } else if (carta.getTipo().equals("DeCamello")) {
+            } else if (carta.getType().equals("OfCamel")) {
                 cabCam++;
-            } else if (carta.getTipo().equals("DeCampanha")) {
+            } else if (carta.getType().equals("OfCampaign")) {
                 artCam++;
             } else {
                 artA++;
             }
         }
 
-        //Buscamos solo 3 cartas, paramos cuando contador = 3 
+        //Buscamos solo 3 cards, paramos cuando contador = 3 
         if ((infF + infG > 0) && (cabCam + cabCab > 0) && (artCam + artA > 0)) {
-            suma = 18 + Integer.min(1, infF) + Integer.min(1, cabCab) + Integer.min(1, artCam);
+            sum = 18 + Integer.min(1, infF) + Integer.min(1, cabCab) + Integer.min(1, artCam);
             if (infF > 0) {
-                tipos.set(0, "Fusilero");
+                types.set(0, "Rifleman");
             } else {
-                tipos.set(0, "Granadero");
+                types.set(0, "Grenadier");
             }
             if (cabCab > 0) {
-                tipos.set(1, "DeCaballo");
+                types.set(1, "OfHorse");
             } else {
-                tipos.set(1, "DeCamello");
+                types.set(1, "OfCamel");
             }
             if (artCam > 0) {
-                tipos.set(2, "DeCampanha");
+                types.set(2, "OfCampaign");
             } else {
-                tipos.set(2, "Antiaerea");
+                types.set(2, "Antiair");
             }
 
         }
         if ((artCam + artA >= 3)) {
-            suma = Integer.max(suma, 19 + Integer.min(3, artCam));
+            sum = Integer.max(sum, 19 + Integer.min(3, artCam));
             for (int i = 1; i <= 3; i++) {
                 if (i <= artCam) {
-                    tipos.set(i - 1, "DeCampanha");
+                    types.set(i - 1, "OfCampaign");
                 } else {
-                    tipos.set(i - 1, "Antiaerea");
+                    types.set(i - 1, "Antiair");
                 }
             }
         }
         if ((cabCab + cabCam >= 3)) {
-            suma = Integer.max(suma, 14 + Integer.min(3, cabCab));
+            sum = Integer.max(sum, 14 + Integer.min(3, cabCab));
             for (int i = 1; i <= 3; i++) {
                 if (i <= cabCab) {
-                    tipos.set(i - 1, "DeCaballo");
+                    types.set(i - 1, "OfHorse");
                 } else {
-                    tipos.set(i - 1, "DeCamello");
+                    types.set(i - 1, "OfCamel");
                 }
             }
         }
         if ((infF + infG >= 3)) {
-            suma = Integer.max(suma, 19 + Integer.min(3, infF));
+            sum = Integer.max(sum, 19 + Integer.min(3, infF));
             for (int i = 1; i <= 3; i++) {
                 if (i <= infF) {
-                    tipos.set(i - 1, "Fusilero");
+                    types.set(i - 1, "Rifleman");
                 } else {
-                    tipos.set(i - 1, "Granadero");
+                    types.set(i - 1, "Grenadier");
                 }
             }
         }
 
-        for (Carta carta : jugador.getCartas()) {
+        for (Card carta : player.getCards()) {
             for (int i = 0; i < 3; i++) {
-                if (carta.getTipo().equals(tipos.get(i)) && (!combinacion.contains(carta.obtenerNombre()))) {
-                    combinacion.add(carta.obtenerNombre());
-                    tipos.set(i, "");
+                if (carta.getType().equals(types.get(i)) && (!combinacion.contains(carta.getName()))) {
+                    combinacion.add(carta.getName());
+                    types.set(i, "");
                 }
             }
         }
@@ -1300,81 +1300,81 @@ public class Menu {
 
     }
 
-    void repartirEjercitos() {
+    void distributeArmies() {
         int indicadorR1, indicadorR4, indicadorR7;
 
         
 
-        /*Creamos un HashMap para relacionar los paises ocupados en un continente*/
-        //HashMap<String, int> paisesOcupados = new HashMap<>();
+        /*Creamos un HashMap para relacionar los countries ocupados en un continent*/
+        //HashMap<String, int> countriesOcupados = new HashMap<>();
 
-        /*Recorremos los jugadores*/
-        Iterator<String> itJugadores = jugadores.keySet().iterator();
-        while (itJugadores.hasNext()) {
-            String nombreJugador = itJugadores.next();
+        /*Recorremos los players*/
+        Iterator<String> itPlayeres = players.keySet().iterator();
+        while (itPlayeres.hasNext()) {
+            String nombrePlayer = itPlayeres.next();
             
-            ArrayList<Continente> continentesR1 = new ArrayList<>();
-            ArrayList<Continente> continentesR4 = new ArrayList<>();
-            ArrayList<Continente> continentesR7 = new ArrayList<>();
+            ArrayList<Continent> continentsR1 = new ArrayList<>();
+            ArrayList<Continent> continentsR4 = new ArrayList<>();
+            ArrayList<Continent> continentsR7 = new ArrayList<>();
             
             indicadorR1 = 0;
             indicadorR4 = 0;
             indicadorR7 = 0;
 
-            /*Comprobamos qué regla se cumple para cada continente.*/
-            HashMap<Continente, Float> porcentajes = new HashMap<>();
+            /*Comprobamos qué regla se cumple para cada continent.*/
+            HashMap<Continent, Float> porcentajes = new HashMap<>();
 
-            for (Pais pais : jugadores.get(nombreJugador).getPaises()) {
-                if (!porcentajes.containsKey(pais.getContinente())) {
-                    porcentajes.put(pais.getContinente(), new Float(0.0f));
+            for (Country country : players.get(nombrePlayer).getCountries()) {
+                if (!porcentajes.containsKey(country.getContinent())) {
+                    porcentajes.put(country.getContinent(), new Float(0.0f));
                 }
-                porcentajes.replace(pais.getContinente(), new Float(porcentajes.get(pais.getContinente()) + 1.f/(float)pais.getContinente().getPaises().size()));
+                porcentajes.replace(country.getContinent(), new Float(porcentajes.get(country.getContinent()) + 1.f/(float)country.getContinent().getCountries().size()));
                 
             }
 
             System.out.println("\n-------------");
-            System.out.println("\nJugador: " + nombreJugador);
+            System.out.println("\nPlayer: " + nombrePlayer);
 
-            for (Continente continente : porcentajes.keySet()) {
-                if ((porcentajes.get(continente))>= 0.5) {
+            for (Continent continent : porcentajes.keySet()) {
+                if ((porcentajes.get(continent))>= 0.5) {
                     indicadorR1++;
-                    continentesR1.add(continente);
+                    continentsR1.add(continent);
                 }
-                if ((porcentajes.get(continente)) < 0.5 &&(porcentajes.get(continente)) >= 0.25) {
+                if ((porcentajes.get(continent)) < 0.5 &&(porcentajes.get(continent)) >= 0.25) {
                     indicadorR4++;
-                    continentesR4.add(continente);
+                    continentsR4.add(continent);
                 }
-                if ((porcentajes.get(continente)) <= 0.25) {
+                if ((porcentajes.get(continent)) <= 0.25) {
                     indicadorR7++;
-                    continentesR7.add(continente);
+                    continentsR7.add(continent);
                 }
             }
 
             /*---REGLA 1, 2, 3---*/
             if (indicadorR1 == 1) {
-                repartirR123(nombreJugador, 0, porcentajes, continentesR1);
+                distributeR123(nombrePlayer, 0, porcentajes, continentsR1);
                 System.out.println("\nSe cumple regla 1 (" + indicadorR1 + ")");
             }
              
             else if (indicadorR1 > 1) {
                 System.out.println("\nSe cumple regla 1 (" + indicadorR1+ ") para: \n");
-                for(int i = 0; i < continentesR1.size(); i++)
-                    System.out.println(continentesR1.get(i).getNombre() + " ");
-                /*En este caso, habrá más de un continente sobre el que aplicar R1
-                 *En primer lugar, comprobamos que podemos escoger aquel comntinente tal que para este jugador,
-                 *su porcentaje de ocupación sea el máximo de entre el resto de continentes que cumplen R1 */
+                for(int i = 0; i < continentsR1.size(); i++)
+                    System.out.println(continentsR1.get(i).getName() + " ");
+                /*En este caso, habrá más de un continent sobre el que aplicar R1
+                 *En primer lugar, comprobamos que podemos escoger aquel comntinente tal que para este player,
+                 *su porcentaje de ocupación sea el máximo de entre el resto de continents que cumplen R1 */
 
-                if (aplicarMenorNFrontera(maximo(porcentajes, continentesR1), porcentajes, continentesR1) == 0) {
+                if (aplicarMenorNBorder(maximo(porcentajes, continentsR1), porcentajes, continentsR1) == 0) {
                     /*En el caso de que podamos escoger el máximo porcventaje de ocupación (único),
-                    actualizamos la asignación de ejércitos en el continente de porcentaje de 
-                    ocupación máxima para este jugador*/ 
-                    System.out.println("\nMaximo sobre el que aplicamos: " + continentesR1.get(maximo(porcentajes, continentesR1)).getNombre());
-                    repartirR123(nombreJugador, maximo(porcentajes, continentesR1), porcentajes, continentesR1);
+                    actualizamos la asignación de ejércitos en el continent de porcentaje de 
+                    ocupación máxima para este player*/ 
+                    System.out.println("\nMaximo sobre el que aplicamos: " + continentsR1.get(maximo(porcentajes, continentsR1)).getName());
+                    distributeR123(nombrePlayer, maximo(porcentajes, continentsR1), porcentajes, continentsR1);
                 }
                 
-                else{ /*En otro caso, aplicamos R3: R1 para el continente con menor numero de paises frontera*/ 
-                    System.out.println("\nMenorNFrontera: " + continentesR1.get(menorNFrontera(continentesR1)).getNombre());
-                    repartirR123(nombreJugador, menorNFrontera(continentesR1), porcentajes, continentesR1);
+                else{ /*En otro caso, aplicamos R3: R1 para el continent con menor number de countries border*/ 
+                    System.out.println("\nMenorNBorder: " + continentsR1.get(menorNBorder(continentsR1)).getName());
+                    distributeR123(nombrePlayer, menorNBorder(continentsR1), porcentajes, continentsR1);
                     
                 }
                 
@@ -1382,28 +1382,28 @@ public class Menu {
             } 
             /*---REGLA 4, 5, 6---*/ 
             else if (indicadorR4 == 1) {
-                repartirR456(nombreJugador, 0, porcentajes, continentesR4);
+                distributeR456(nombrePlayer, 0, porcentajes, continentsR4);
                 System.out.println("\nSe cumple regla 4 (1)");
             }
             
             else if (indicadorR4 > 1) {
                 System.out.println("\nSe cumple regla 4 (" + indicadorR4 + ") para: \n");
-                for(int i = 0; i < continentesR4.size(); i++)
-                    System.out.println(continentesR4.get(i).getNombre());
-                /*En primer lugar, comprobamos que podemos escoger aquel comntinente tal que para este jugador,
-                su porcentaje de ocupación sea el máximo de entre el resto de continentes que cumplen R4 */
-                if (aplicarMenorNFrontera(maximo(porcentajes, continentesR4), porcentajes, continentesR4) == 0) /*En este caso, actualizamos la asignación de ejércitos en el continente de porcentaje de 
-                    ocupación máxima para este jugador*/ 
-                    repartirR456(nombreJugador, maximo(porcentajes, continentesR4), porcentajes, continentesR4);
+                for(int i = 0; i < continentsR4.size(); i++)
+                    System.out.println(continentsR4.get(i).getName());
+                /*En primer lugar, comprobamos que podemos escoger aquel comntinente tal que para este player,
+                su porcentaje de ocupación sea el máximo de entre el resto de continents que cumplen R4 */
+                if (aplicarMenorNBorder(maximo(porcentajes, continentsR4), porcentajes, continentsR4) == 0) /*En este caso, actualizamos la asignación de ejércitos en el continent de porcentaje de 
+                    ocupación máxima para este player*/ 
+                    distributeR456(nombrePlayer, maximo(porcentajes, continentsR4), porcentajes, continentsR4);
                 
-                else /*En otro caso, aplicamos R6: R4 para el continente con menor numero de paises frontera*/ 
-                    repartirR456(nombreJugador, menorNFrontera(continentesR4), porcentajes, continentesR4);
+                else /*En otro caso, aplicamos R6: R4 para el continent con menor number de countries border*/ 
+                    distributeR456(nombrePlayer, menorNBorder(continentsR4), porcentajes, continentsR4);
                 
 
             }
 
             else if (indicadorR7 == 1) {
-                repartirR78(nombreJugador, 0, porcentajes, continentesR7);
+                distributeR78(nombrePlayer, 0, porcentajes, continentsR7);
                 System.out.println("\nSe cumple regla 7");
 
             }
@@ -1414,115 +1414,115 @@ public class Menu {
     }
 }
 
-void repartirR123(String nombreJugador, int i, HashMap<Continente, Float> porcentajesR, ArrayList<Continente> continentesR) {
-        int paisesOcupados = 0, num = 0, ejercitosDisponibles = 0;
+void distributeR123(String nombrePlayer, int i, HashMap<Continent, Float> porcentajesR, ArrayList<Continent> continentsR) {
+        int countriesOcupados = 0, num = 0, armysDisponibles = 0;
         double factordivision = 0.0;
-        ejercitosDisponibles = (jugadores.get(nombreJugador)).getNumeroEjercitos();
-        paisesOcupados = (int)(porcentajesR.get(continentesR.get(i))*continentesR.get(i).getPaises().size());
+        armysDisponibles = (players.get(nombrePlayer)).getArmyNumbers();
+        countriesOcupados = (int)(porcentajesR.get(continentsR.get(i))*continentsR.get(i).getCountries().size());
 
         /*Asignamos según el criterio de la regla 1*/
-        if (continentesR.get(i).getNombre().equals("Oceanía") || continentesR.get(i).getNombre().equals("AméricaSur")) {
+        if (continentsR.get(i).getName().equals("Oceanía") || continentsR.get(i).getName().equals("AméricaSur")) {
             factordivision = 1.5;
         } else {
             factordivision = 1;
         }
-        /*Realizamos la asignación de ejércitos para todos los paises del continente ocupados por ese jugador*/
-        for (Pais pais : continentesR.get(i).getPaises()) {
-            /*En el caso de que busquemos el numero de paises ocupados total: 
-            paisesOcupados = jugadores.get(nombreJugador).getPaises().size()*/
-            if ((jugadores.get(nombreJugador)).getPaises().contains(pais)) {
-                num = (int) ((ejercitosDisponibles) / (factordivision * paisesOcupados));
-                pais.setNumeroEjercito(num);
-                ejercitosDisponibles = ejercitosDisponibles - num;
-                (jugadores.get(nombreJugador)).setNumeroEjercitos(ejercitosDisponibles);
+        /*Realizamos la asignación de ejércitos para todos los countries del continent ocupados por ese player*/
+        for (Country country : continentsR.get(i).getCountries()) {
+            /*En el caso de que busquemos el number de countries ocupados total: 
+            countriesOcupados = players.get(nombrePlayer).getCountries().size()*/
+            if ((players.get(nombrePlayer)).getCountries().contains(country)) {
+                num = (int) ((armysDisponibles) / (factordivision * countriesOcupados));
+                country.setArmyNumber(num);
+                armysDisponibles = armysDisponibles - num;
+                (players.get(nombrePlayer)).setArmyNumbers(armysDisponibles);
             }
         }
-        /*Si hay ejercitos disponibles, asignamos un ejercito a cada pais con 1 ejercito del jugador, priorizando los del continente
-        de menor numero de paises frontera*/       
-        repartirR36(nombreJugador, porcentajesR, continentesR);
+        /*Si hay armies disponibles, asignamos un army a cada country con 1 army del player, priorizando los del continent
+        de menor number de countries border*/       
+        distributeR36(nombrePlayer, porcentajesR, continentsR);
     }
 
-    /*Función para R3R6: añadir un ejército a países del jugador en continente de la regla que tengan un ejército mientras 
-      queden ejercitos disponibles*/
-    void repartirR36(String nombreJugador, HashMap<Continente, Float> porcentajesR, ArrayList<Continente> continentesR) {
-        int j = 0, ejercitosDisponibles = 0, num = 0;
+    /*Función para R3R6: añadir un ejército a países del player en continent de la regla que tengan un ejército mientras 
+      queden armies disponibles*/
+    void distributeR36(String nombrePlayer, HashMap<Continent, Float> porcentajesR, ArrayList<Continent> continentsR) {
+        int j = 0, armysDisponibles = 0, num = 0;
         
-        ejercitosDisponibles = (jugadores.get(nombreJugador)).getNumeroEjercitos();
-        for(Pais pais : continentesR.get(menorNFrontera(continentesR)).getPaises()){
-            while(ejercitosDisponibles > 0 && pais.getNumeroEjercito() == 1){
-                //Asignamos los ejercitos a cada pais del jugador
+        armysDisponibles = (players.get(nombrePlayer)).getArmyNumbers();
+        for(Country country : continentsR.get(menorNBorder(continentsR)).getCountries()){
+            while(armysDisponibles > 0 && country.getArmyNumber() == 1){
+                //Asignamos los armies a cada country del player
                 
-                pais.addNumeroEjercito(1);
-                //Actualizamos los ejercitos disponibles
-                ejercitosDisponibles = ejercitosDisponibles - 1;
-                (jugadores.get(nombreJugador)).setNumeroEjercitos(ejercitosDisponibles);
+                country.addArmyNumber(1);
+                //Actualizamos los armies disponibles
+                armysDisponibles = armysDisponibles - 1;
+                (players.get(nombrePlayer)).setArmyNumbers(armysDisponibles);
             }            
         }
-        continentesR.remove(menorNFrontera(continentesR));        
-        if(!continentesR.isEmpty())
-            repartirR36(nombreJugador, porcentajesR, continentesR);
+        continentsR.remove(menorNBorder(continentsR));        
+        if(!continentsR.isEmpty())
+            distributeR36(nombrePlayer, porcentajesR, continentsR);
     }
 
-    void repartirR456(String nombreJugador, int i, HashMap<Continente, Float> porcentajesR, ArrayList<Continente> continentesR) {
-        int paisesOcupados = 0, num = 0, ejercitosDisponibles = 0;
-        ejercitosDisponibles = (jugadores.get(nombreJugador)).getNumeroEjercitos();
-        paisesOcupados = (int)(porcentajesR.get(continentesR.get(i))*continentesR.get(i).getPaises().size());
+    void distributeR456(String nombrePlayer, int i, HashMap<Continent, Float> porcentajesR, ArrayList<Continent> continentsR) {
+        int countriesOcupados = 0, num = 0, armysDisponibles = 0;
+        armysDisponibles = (players.get(nombrePlayer)).getArmyNumbers();
+        countriesOcupados = (int)(porcentajesR.get(continentsR.get(i))*continentsR.get(i).getCountries().size());
 
-        for (Pais pais : continentesR.get(i).getPaises()) {
-            /*En el caso de que busquemos el numero de paises ocupados total: 
-            paisesOcupados = jugadores.get(nombreJugador).getPaises().size()*/
-            if ((jugadores.get(nombreJugador)).getPaises().contains(pais)) {
-                num = (int) ((jugadores.get(nombreJugador).getNumeroEjercitos()) / (2 * paisesOcupados));
-                pais.setNumeroEjercito(num);
-                ejercitosDisponibles -= num;
-                (jugadores.get(nombreJugador)).setNumeroEjercitos(ejercitosDisponibles);
+        for (Country country : continentsR.get(i).getCountries()) {
+            /*En el caso de que busquemos el number de countries ocupados total: 
+            countriesOcupados = players.get(nombrePlayer).getCountries().size()*/
+            if ((players.get(nombrePlayer)).getCountries().contains(country)) {
+                num = (int) ((players.get(nombrePlayer).getArmyNumbers()) / (2 * countriesOcupados));
+                country.setArmyNumber(num);
+                armysDisponibles -= num;
+                (players.get(nombrePlayer)).setArmyNumbers(armysDisponibles);
             }
         }
-        /*Si hay ejercitos disponibles, asignamos un ejercito a cada pais con 1 ejercito del jugador, priorizando los del continente
-        de menor numero de paises frontera*/
-        repartirR36(nombreJugador, porcentajesR, continentesR);
+        /*Si hay armies disponibles, asignamos un army a cada country con 1 army del player, priorizando los del continent
+        de menor number de countries border*/
+        distributeR36(nombrePlayer, porcentajesR, continentsR);
 
     }
 
-    void repartirR78(String nombreJugador, int i, HashMap<Continente, Float> porcentajesR, ArrayList<Continente> continentesR) {
-        int paisesOcupados = 0, num = 0, ejercitosDisponibles = 0;
+    void distributeR78(String nombrePlayer, int i, HashMap<Continent, Float> porcentajesR, ArrayList<Continent> continentsR) {
+        int countriesOcupados = 0, num = 0, armysDisponibles = 0;
         double factorocupacion = 0.0;
-        ejercitosDisponibles = (jugadores.get(nombreJugador)).getNumeroEjercitos();
-        paisesOcupados = (int)(porcentajesR.get(continentesR.get(i))*continentesR.get(i).getPaises().size());
+        armysDisponibles = (players.get(nombrePlayer)).getArmyNumbers();
+        countriesOcupados = (int)(porcentajesR.get(continentsR.get(i))*continentsR.get(i).getCountries().size());
 
         /*Asignamos según el criterio de la regla 1*/
-        if (jugadores.size() == 3 || jugadores.size() == 4) {
+        if (players.size() == 3 || players.size() == 4) {
             factorocupacion = 2;
         } else {
             factorocupacion = 3;
         }
-        /*Realizamos la asignación de ejércitos para todos los paises del continente ocupados por ese jugador*/
+        /*Realizamos la asignación de ejércitos para todos los countries del continent ocupados por ese player*/
 
-        for (Pais pais : continentesR.get(i).getPaises()) {
-            /*En el caso de que busquemos el numero de paises ocupados total: 
-            paisesOcupados = jugadores.get(nombreJugador).getPaises().size()*/
-            if ((jugadores.get(nombreJugador)).getPaises().contains(pais)) {
-                num = (int) (factorocupacion * paisesOcupados);
-                pais.setNumeroEjercito(num);
-                ejercitosDisponibles -= num;
-                (jugadores.get(nombreJugador)).setNumeroEjercitos(ejercitosDisponibles);
+        for (Country country : continentsR.get(i).getCountries()) {
+            /*En el caso de que busquemos el number de countries ocupados total: 
+            countriesOcupados = players.get(nombrePlayer).getCountries().size()*/
+            if ((players.get(nombrePlayer)).getCountries().contains(country)) {
+                num = (int) (factorocupacion * countriesOcupados);
+                country.setArmyNumber(num);
+                armysDisponibles -= num;
+                (players.get(nombrePlayer)).setArmyNumbers(armysDisponibles);
             }
         }
-        /*Si hay ejercitos disponibles, asignamos un ejercito a cada pais con 1 ejercito del jugador, priorizando los del continente
-        de menor numero de paises frontera*/
-        repartirR36(nombreJugador, porcentajesR, continentesR);
+        /*Si hay armies disponibles, asignamos un army a cada country con 1 army del player, priorizando los del continent
+        de menor number de countries border*/
+        distributeR36(nombrePlayer, porcentajesR, continentsR);
     }
 
 
-    /*Función que dado un índice comprueba si se repite el elemento en una lista*/
-    int aplicarMenorNFrontera(int i, HashMap<Continente, Float> porcentajes, ArrayList<Continente> continentesR) {
+    /*Función que dice un índice comprueba si se repite el elemento en una lista*/
+    int aplicarMenorNBorder(int i, HashMap<Continent, Float> porcentajes, ArrayList<Continent> continentsR) {
         float aux;
         int contador = -1, j = 0;
 
-        aux = porcentajes.get(continentesR.get(i));
+        aux = porcentajes.get(continentsR.get(i));
 
-        while ((contador < 1) && (j < continentesR.size())) {
-            if (aux == porcentajes.get(continentesR.get(j))) {
+        while ((contador < 1) && (j < continentsR.size())) {
+            if (aux == porcentajes.get(continentsR.get(j))) {
                 contador++;
             }
             j++;
@@ -1532,18 +1532,18 @@ void repartirR123(String nombreJugador, int i, HashMap<Continente, Float> porcen
 
 
     /*Función que devuelve el índice donde se encuentra el mayor porcentaje
-      de la lista de porcentajes de continentes que cumplen R1, 
-      este indice coincide con el de su continente correspondiente en 
-      continentesR1*/
+      de la lista de porcentajes de continents que cumplen R1, 
+      este indice coincide con el de su continent correspondiente en 
+      continentsR1*/
  /*Se aplica también para R4 y R7*/
-    int maximo(HashMap<Continente, Float> porcentajesR, ArrayList<Continente> continentesR) {
+    int maximo(HashMap<Continent, Float> porcentajesR, ArrayList<Continent> continentsR) {
         float max = 0;
         int indice = 0, i = 0;
 
-        while(i < continentesR.size() && i < porcentajesR.keySet().size()) {
+        while(i < continentsR.size() && i < porcentajesR.keySet().size()) {
             //Comparamos porcentajes para escoger el máximo
-            if (porcentajesR.get(continentesR.get(i)).intValue() > max) {
-                max = porcentajesR.get(continentesR.get(i)).intValue() ;
+            if (porcentajesR.get(continentsR.get(i)).intValue() > max) {
+                max = porcentajesR.get(continentsR.get(i)).intValue() ;
                 indice = i;
             }
             i++;
@@ -1552,14 +1552,14 @@ void repartirR123(String nombreJugador, int i, HashMap<Continente, Float> porcen
         return indice;
     }
 
-    /*Función que devuelve el indice en el que se encuentra el continente con menor numero de paises frontera*/
-    int menorNFrontera(ArrayList<Continente> continentesR) {
+    /*Función que devuelve el indice en el que se encuentra el continent con menor number de countries border*/
+    int menorNBorder(ArrayList<Continent> continentsR) {
         int contador = 0, aux = 42, indice = 0;
 
-        for (int i = 0; i < continentesR.size(); i++) {
-            for (Pais pais : continentesR.get(i).fronteras()) {
-                /*Buscamos el numero de paises frontera dentro del continente i*/
-                if (continentesR.get(i).getPaises().contains(pais.getFronteras())) {
+        for (int i = 0; i < continentsR.size(); i++) {
+            for (Country country : continentsR.get(i).borders()) {
+                /*Buscamos el number de countries border dentro del continent i*/
+                if (continentsR.get(i).getCountries().contains(country.getBorders())) {
                     contador++;
                 }
 

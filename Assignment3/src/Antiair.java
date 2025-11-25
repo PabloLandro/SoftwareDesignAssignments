@@ -9,10 +9,15 @@ package risk;
  *
  * @author landr
  */
-public abstract class ArmyCompuesto extends Army{
+public class Antiair extends Artillery{
     
-    public ArmyCompuesto(){
-        super();
+    public Antiair(Country country, Player player){
+        super(country, "Antiair", player);
     }
-    
+
+    @Override
+    int getRearm() {
+        return 3;
+    }
+ 
 }
