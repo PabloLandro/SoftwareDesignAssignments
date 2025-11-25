@@ -1,0 +1,19 @@
+{
+  pais: Irkutsk,
+  jugador: Hooker,
+  numeroEjercitosAsignados: 15,
+  numeroEjercitosTotales: 0,
+  paisesOcupadosContinente: [ { "Siberia", 0},
+                              { "Yakustsk", 0},
+                              { "Urales", 0},
+                              { "Afganistán", 0},
+                              { "Oriente Medio", 0},
+                              { "Kamchatka", 0},
+                              { "Irkutsk", 15},
+                              { "Mongolia", 0},
+                              { "China", 0},
+                              { "India", 0},
+                              { "Japón", 0},
+                              { "Sureste Asiático", 0},
+                            ]
+}
