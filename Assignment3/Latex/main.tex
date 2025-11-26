@@ -16,7 +16,7 @@
 	\vspace{25pt} % Whitespace
 	\rule{\linewidth}{0.5pt}\\ % Thin top horizontal rule
 	\vspace{20pt} % Whitespace
-	{\huge Evaluating the Design of a Project }\\ % The assignment title
+	{\huge Refactoring the design of an existing project }\\ % The assignment title
 	\vspace{12pt} % Whitespace
 	\rule{\linewidth}{2pt}\\ % Thick bottom horizontal rule
 	\vspace{12pt} % Whitespace
@@ -146,6 +146,13 @@ public abstract class CommandParser {
     public abstract Command parse(String input) throws CommandException;
 }
 \end{lstlisting}
+
+We also made use of inheritance to extract common logic shared by multiple commands and to eliminate unnecessary code duplication. Several parts of the original implementation contained methods that performed simlar tasks but differed only in details, making them ideal candidates for generalization. By identifying these similarities, we introduced parent classes that encapsulate the shared behavior and subclasses which can make use of this logic.
+
+A clear example of this approach is the relationship between \texttt{AssignCountryCommand} and \texttt{AssignCountriesCommand}. Both commands are responsible for assigning countries on the map to players, but they differ in that the first assigns a single country, whereas the second processes a sequence of countries obtained from a text file. In the original code, these two functionalities were implemented independently, resulting in duplicated logic for validating input, checking game state constraints, and performing the assignment operations. Through refactoring, we extracted these shared tasks into a base class, ensuring that both commands inherit the same core behavior while providing its own specialization only where necessary.
+
+This restructuring not only simplifies the implementation of each command but also reduces the likelihood of inconsistency or error when adding future features. Any improvement or bug fix applied to the shared logic now automatically benefits all subclasses, contributing to a more robust and maintainable architecture overall.
+
 
 \subsection{Exceptions Duplicated Code}
 
