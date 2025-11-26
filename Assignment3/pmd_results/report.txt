@@ -1,0 +1,369 @@
+src/risk/Army.java:21:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Army.java:32:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Army.java:41:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Army.java:41:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/BlueArmy.java:28:	PrimitiveWrapperInstantiation:	Do not use `new Integer(...)`, prefer `Integer.valueOf(...)`
+src/risk/Card.java:40:	UnusedAssignment:	The initializer for variable 'out' is never used (overwritten on line 41)
+src/risk/Continent.java:19:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Continent.java:29:	CognitiveComplexity:	The method 'toString()' has a cognitive complexity of 21, current threshold is 15
+src/risk/Continent.java:29:	CyclomaticComplexity:	The method 'toString()' has a cyclomatic complexity of 11.
+src/risk/Continent.java:31:	UnusedAssignment:	The initializer for variable 'out' is never used (overwritten on line 35)
+src/risk/Continent.java:32:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Continent.java:38:	ForLoopCanBeForeach:	This for loop can be replaced by a foreach loop
+src/risk/Continent.java:85:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Continent.java:104:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Continent.java:145:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Continent.java:147:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Country.java:23:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Country.java:44:	UnusedAssignment:	The initializer for variable 'out' is never used (overwritten on line 45)
+src/risk/Country.java:84:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Country.java:96:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/CyanArmy.java:22:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/CyanArmy.java:22:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/CyanArmy.java:25:	PrimitiveWrapperInstantiation:	Do not use `new Integer(...)`, prefer `Integer.valueOf(...)`
+src/risk/Dice.java:14:	UseUtilityClass:	All methods are static. Consider adding a private no-args constructor to prevent instantiation.
+src/risk/Dice.java:18:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Dice.java:20:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Dice.java:28:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Dice.java:30:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Errors.java:17:	NcssCount:	The constructor 'Errors(int)' has a NCSS line count of 137.
+src/risk/Errors.java:17:	CyclomaticComplexity:	The constructor 'Errors(int)' has a cyclomatic complexity of 28.
+src/risk/Errors.java:18:	NonExhaustiveSwitch:	Switch statements or expressions should be exhaustive, add a default case (or missing enum branches)
+src/risk/Errors.java:21:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:27:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:33:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:39:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:45:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:51:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:57:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:63:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:69:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:75:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:81:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:87:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:93:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:99:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:105:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:111:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:117:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:123:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:129:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:135:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:141:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:147:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:153:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:159:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:165:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:171:	SystemPrintln:	Usage of System.out/err
+src/risk/Errors.java:177:	SystemPrintln:	Usage of System.out/err
+src/risk/GreenArmy.java:26:	PrimitiveWrapperInstantiation:	Do not use `new Integer(...)`, prefer `Integer.valueOf(...)`
+src/risk/Mapa.java:13:	GodClass:	Possible God Class (WMC=90, ATFD=55, TCC=10.714%)
+src/risk/Mapa.java:13:	CyclomaticComplexity:	The class 'Mapa' has a total cyclomatic complexity of 90 (highest 41).
+src/risk/Mapa.java:16:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Mapa.java:18:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Mapa.java:31:	SystemPrintln:	Usage of System.out/err
+src/risk/Mapa.java:57:	SystemPrintln:	Usage of System.out/err
+src/risk/Mapa.java:60:	SystemPrintln:	Usage of System.out/err
+src/risk/Mapa.java:62:	SystemPrintln:	Usage of System.out/err
+src/risk/Mapa.java:96:	CognitiveComplexity:	The method 'printLineaCountry(int)' has a cognitive complexity of 24, current threshold is 15
+src/risk/Mapa.java:96:	CyclomaticComplexity:	The method 'printLineaCountry(int)' has a cyclomatic complexity of 20.
+src/risk/Mapa.java:96:	NPathComplexity:	The method 'printLineaCountry(int)' has an NPath complexity of 578, current threshold is 200
+src/risk/Mapa.java:98:	SystemPrintln:	Usage of System.out/err
+src/risk/Mapa.java:112:	SystemPrintln:	Usage of System.out/err
+src/risk/Mapa.java:114:	SystemPrintln:	Usage of System.out/err
+src/risk/Mapa.java:115:	SystemPrintln:	Usage of System.out/err
+src/risk/Mapa.java:122:	SystemPrintln:	Usage of System.out/err
+src/risk/Mapa.java:124:	SystemPrintln:	Usage of System.out/err
+src/risk/Mapa.java:127:	SystemPrintln:	Usage of System.out/err
+src/risk/Mapa.java:130:	SystemPrintln:	Usage of System.out/err
+src/risk/Mapa.java:132:	SystemPrintln:	Usage of System.out/err
+src/risk/Mapa.java:142:	CyclomaticComplexity:	The method 'printLineaArmies(int)' has a cyclomatic complexity of 10.
+src/risk/Mapa.java:144:	SystemPrintln:	Usage of System.out/err
+src/risk/Mapa.java:153:	SystemPrintln:	Usage of System.out/err
+src/risk/Mapa.java:158:	SystemPrintln:	Usage of System.out/err
+src/risk/Mapa.java:160:	SystemPrintln:	Usage of System.out/err
+src/risk/Mapa.java:162:	SystemPrintln:	Usage of System.out/err
+src/risk/Mapa.java:180:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Mapa.java:180:	NcssCount:	The method 'getBorder(Country)' has a NCSS line count of 62.
+src/risk/Mapa.java:180:	CognitiveComplexity:	The method 'getBorder(Country)' has a cognitive complexity of 76, current threshold is 15
+src/risk/Mapa.java:180:	CyclomaticComplexity:	The method 'getBorder(Country)' has a cyclomatic complexity of 41.
+src/risk/Mapa.java:180:	NPathComplexity:	The method 'getBorder(Country)' has an NPath complexity of 301989888, current threshold is 200
+src/risk/Mapa.java:183:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Mapa.java:187:	OneDeclarationPerLine:	Use one line for each declaration, it enhances code readability.
+src/risk/Mapa.java:217:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Mapa.java:219:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Mapa.java:222:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Mapa.java:224:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Mapa.java:227:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Mapa.java:229:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Mapa.java:232:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Mapa.java:235:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Mapa.java:237:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Mapa.java:241:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Mapa.java:243:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Mapa.java:246:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Mapa.java:248:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Mapa.java:251:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Mapa.java:253:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Mapa.java:256:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Mapa.java:258:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Mapa.java:261:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Mapa.java:263:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Mapa.java:266:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Mapa.java:268:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Mapa.java:271:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Mapa.java:273:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:1:	CouplingBetweenObjects:	A value of 39 may denote a high amount of coupling within the class (threshold: 20)
+src/risk/Menu.java:18:	GodClass:	Possible God Class (WMC=375, ATFD=187, TCC=28.506%)
+src/risk/Menu.java:18:	CyclomaticComplexity:	The class 'Menu' has a total cyclomatic complexity of 375 (highest 96).
+src/risk/Menu.java:18:	TooManyMethods:	This class has too many methods, consider refactoring it.
+src/risk/Menu.java:18:	TooManyFields:	Too many fields
+src/risk/Menu.java:23:	LooseCoupling:	Avoid using implementation types like 'HashMap'; use the interface instead
+src/risk/Menu.java:24:	LooseCoupling:	Avoid using implementation types like 'HashMap'; use the interface instead
+src/risk/Menu.java:25:	LooseCoupling:	Avoid using implementation types like 'HashMap'; use the interface instead
+src/risk/Menu.java:26:	LooseCoupling:	Avoid using implementation types like 'HashMap'; use the interface instead
+src/risk/Menu.java:27:	LooseCoupling:	Avoid using implementation types like 'HashMap'; use the interface instead
+src/risk/Menu.java:28:	LooseCoupling:	Avoid using implementation types like 'HashMap'; use the interface instead
+src/risk/Menu.java:29:	LooseCoupling:	Avoid using implementation types like 'HashMap'; use the interface instead
+src/risk/Menu.java:30:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:31:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:32:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:33:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:34:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:50:	NcssCount:	The constructor 'Menu()' has a NCSS line count of 237.
+src/risk/Menu.java:50:	CognitiveComplexity:	The constructor 'Menu()' has a cognitive complexity of 170, current threshold is 15
+src/risk/Menu.java:50:	CyclomaticComplexity:	The constructor 'Menu()' has a cyclomatic complexity of 96.
+src/risk/Menu.java:58:	UnusedAssignment:	The initializer for variable 'orden' is never used (overwritten on line 62)
+src/risk/Menu.java:86:	SwitchDensity:	A high ratio of statements to labels in a switch statement.  Consider refactoring.
+src/risk/Menu.java:92:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:108:	SimplifyBooleanExpressions:	Avoid unnecessary comparisons in boolean expressions
+src/risk/Menu.java:109:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:193:	SwitchDensity:	A high ratio of statements to labels in a switch statement.  Consider refactoring.
+src/risk/Menu.java:200:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:249:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:274:	NonExhaustiveSwitch:	Switch statements or expressions should be exhaustive, add a default case (or missing enum branches)
+src/risk/Menu.java:316:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:333:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:346:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:347:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:358:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 104 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 118 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 123 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 136 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 147 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 159 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 168 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 177 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 186 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 198 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 217 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 221 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 232 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 236 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 247 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 268 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 280 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 292 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 304 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 321 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 341 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 368 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 373 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 387 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 398 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 405 is caught in this block.
+src/risk/Menu.java:407:	ExceptionAsFlowControl:	Exception thrown at line 98 is caught in this block.
+src/risk/Menu.java:418:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:422:	OneDeclarationPerLine:	Use one line for each declaration, it enhances code readability.
+src/risk/Menu.java:423:	UnusedAssignment:	The initializer for variable 'readBuffer' is never used (overwritten on line 427)
+src/risk/Menu.java:426:	RelianceOnDefaultCharset:	Specify a character set instead of relying on the default charset
+src/risk/Menu.java:434:	AvoidCatchingGenericException:	Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+src/risk/Menu.java:435:	AvoidPrintStackTrace:	Avoid printStackTrace(); use a logger call instead.
+src/risk/Menu.java:440:	OneDeclarationPerLine:	Use one line for each declaration, it enhances code readability.
+src/risk/Menu.java:441:	UnusedAssignment:	The initializer for variable 'readBuffer' is never used (overwritten on line 445)
+src/risk/Menu.java:444:	RelianceOnDefaultCharset:	Specify a character set instead of relying on the default charset
+src/risk/Menu.java:456:	AvoidCatchingGenericException:	Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+src/risk/Menu.java:457:	AvoidPrintStackTrace:	Avoid printStackTrace(); use a logger call instead.
+src/risk/Menu.java:471:	OneDeclarationPerLine:	Use one line for each declaration, it enhances code readability.
+src/risk/Menu.java:472:	UnusedAssignment:	The initializer for variable 'readBuffer' is never used (overwritten on line 476)
+src/risk/Menu.java:475:	RelianceOnDefaultCharset:	Specify a character set instead of relying on the default charset
+src/risk/Menu.java:481:	AvoidCatchingGenericException:	Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+src/risk/Menu.java:482:	AvoidPrintStackTrace:	Avoid printStackTrace(); use a logger call instead.
+src/risk/Menu.java:497:	OneDeclarationPerLine:	Use one line for each declaration, it enhances code readability.
+src/risk/Menu.java:498:	UnusedAssignment:	The initializer for variable 'readBuffer' is never used (overwritten on line 501)
+src/risk/Menu.java:500:	RelianceOnDefaultCharset:	Specify a character set instead of relying on the default charset
+src/risk/Menu.java:513:	AvoidPrintStackTrace:	Avoid printStackTrace(); use a logger call instead.
+src/risk/Menu.java:518:	CognitiveComplexity:	The method 'assignCountries(String, String)' has a cognitive complexity of 18, current threshold is 15
+src/risk/Menu.java:518:	CyclomaticComplexity:	The method 'assignCountries(String, String)' has a cyclomatic complexity of 12.
+src/risk/Menu.java:546:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:562:	OneDeclarationPerLine:	Use one line for each declaration, it enhances code readability.
+src/risk/Menu.java:563:	UnusedAssignment:	The initializer for variable 'readBuffer' is never used (overwritten on line 566)
+src/risk/Menu.java:565:	RelianceOnDefaultCharset:	Specify a character set instead of relying on the default charset
+src/risk/Menu.java:578:	AvoidPrintStackTrace:	Avoid printStackTrace(); use a logger call instead.
+src/risk/Menu.java:586:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:590:	UseCollectionIsEmpty:	Substitute calls to size() == 0 (or size() != 0, size() > 0, size() < 1) with calls to isEmpty()
+src/risk/Menu.java:609:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:629:	OneDeclarationPerLine:	Use one line for each declaration, it enhances code readability.
+src/risk/Menu.java:637:	RelianceOnDefaultCharset:	Specify a character set instead of relying on the default charset
+src/risk/Menu.java:643:	AvoidCatchingGenericException:	Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
+src/risk/Menu.java:644:	AvoidPrintStackTrace:	Avoid printStackTrace(); use a logger call instead.
+src/risk/Menu.java:660:	OneDeclarationPerLine:	Use one line for each declaration, it enhances code readability.
+src/risk/Menu.java:662:	RelianceOnDefaultCharset:	Specify a character set instead of relying on the default charset
+src/risk/Menu.java:675:	AvoidPrintStackTrace:	Avoid printStackTrace(); use a logger call instead.
+src/risk/Menu.java:683:	CognitiveComplexity:	The method 'crearPlayer(String, String)' has a cognitive complexity of 16, current threshold is 15
+src/risk/Menu.java:683:	CyclomaticComplexity:	The method 'crearPlayer(String, String)' has a cyclomatic complexity of 20.
+src/risk/Menu.java:706:	UseCollectionIsEmpty:	Substitute calls to size() == 0 (or size() != 0, size() > 0, size() < 1) with calls to isEmpty()
+src/risk/Menu.java:710:	NonExhaustiveSwitch:	Switch statements or expressions should be exhaustive, add a default case (or missing enum branches)
+src/risk/Menu.java:739:	CognitiveComplexity:	The method 'distributeArmies(int, String)' has a cognitive complexity of 26, current threshold is 15
+src/risk/Menu.java:739:	CyclomaticComplexity:	The method 'distributeArmies(int, String)' has a cyclomatic complexity of 11.
+src/risk/Menu.java:740:	UnusedAssignment:	The initializer for variable 'out' is never used (overwritten on line 763)
+src/risk/Menu.java:785:	CyclomaticComplexity:	The method 'assignCard(Player, String)' has a cyclomatic complexity of 20.
+src/risk/Menu.java:793:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:794:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:794:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:795:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:795:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:796:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:812:	NonExhaustiveSwitch:	Switch statements or expressions should be exhaustive, add a default case (or missing enum branches)
+src/risk/Menu.java:853:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:864:	NcssCount:	The method 'changeCards(Player, String, String, String)' has a NCSS line count of 70.
+src/risk/Menu.java:864:	CognitiveComplexity:	The method 'changeCards(Player, String, String, String)' has a cognitive complexity of 46, current threshold is 15
+src/risk/Menu.java:864:	CyclomaticComplexity:	The method 'changeCards(Player, String, String, String)' has a cyclomatic complexity of 27.
+src/risk/Menu.java:864:	NPathComplexity:	The method 'changeCards(Player, String, String, String)' has an NPath complexity of 307, current threshold is 200
+src/risk/Menu.java:866:	UnusedAssignment:	The initializer for variable 'cambio' is never used (overwritten on lines 903, 906, 909 and 912)
+src/risk/Menu.java:867:	UnusedAssignment:	The initializer for variable 'armies' is never used (overwritten on lines 902, 905, 908 and 911)
+src/risk/Menu.java:868:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:880:	OneDeclarationPerLine:	Use one line for each declaration, it enhances code readability.
+src/risk/Menu.java:886:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:888:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:890:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:892:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:894:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:950:	CognitiveComplexity:	The method 'attack(String, String)' has a cognitive complexity of 35, current threshold is 15
+src/risk/Menu.java:950:	CyclomaticComplexity:	The method 'attack(String, String)' has a cyclomatic complexity of 16.
+src/risk/Menu.java:975:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:976:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:977:	UnusedAssignment:	The initializer for variable 'dices1' is never used (overwritten on line 978)
+src/risk/Menu.java:979:	UnusedAssignment:	The initializer for variable 'dices2' is never used (overwritten on line 980)
+src/risk/Menu.java:998:	NcssCount:	The method 'attack(String, String, String, String)' has a NCSS line count of 77.
+src/risk/Menu.java:998:	CognitiveComplexity:	The method 'attack(String, String, String, String)' has a cognitive complexity of 64, current threshold is 15
+src/risk/Menu.java:998:	CyclomaticComplexity:	The method 'attack(String, String, String, String)' has a cyclomatic complexity of 22.
+src/risk/Menu.java:998:	NPathComplexity:	The method 'attack(String, String, String, String)' has an NPath complexity of 456, current threshold is 200
+src/risk/Menu.java:999:	OneDeclarationPerLine:	Use one line for each declaration, it enhances code readability.
+src/risk/Menu.java:999:	UnusedAssignment:	The initializer for variable 'dice' is never used (overwritten on line 1045)
+src/risk/Menu.java:999:	UnusedAssignment:	The initializer for variable 'conquista' is never used (overwritten on line 1065)
+src/risk/Menu.java:999:	UnusedAssignment:	The initializer for variable 'armysAtaque1' is never used (overwritten on line 1038)
+src/risk/Menu.java:999:	UnusedAssignment:	The initializer for variable 'armysAtaque2' is never used (overwritten on line 1077)
+src/risk/Menu.java:999:	UnusedAssignment:	The initializer for variable 'armysDefensa1' is never used (overwritten on line 1039)
+src/risk/Menu.java:999:	UnusedAssignment:	The initializer for variable 'armysDefensa2' is never used (overwritten on line 1078)
+src/risk/Menu.java:1000:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:1001:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:1006:	UnusedAssignment:	The value assigned to variable 'parts' is never used (overwritten on line 1006)
+src/risk/Menu.java:1116:	CognitiveComplexity:	The method 'rearm(String, int, String)' has a cognitive complexity of 15, current threshold is 15
+src/risk/Menu.java:1116:	CyclomaticComplexity:	The method 'rearm(String, int, String)' has a cyclomatic complexity of 12.
+src/risk/Menu.java:1117:	UnusedAssignment:	The initializer for variable 'out' is never used (overwritten on line 1147)
+src/risk/Menu.java:1172:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:1174:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:1174:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:1176:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:1178:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:1178:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:1214:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:1214:	NcssCount:	The method 'maximoCambio(Player)' has a NCSS line count of 65.
+src/risk/Menu.java:1214:	CognitiveComplexity:	The method 'maximoCambio(Player)' has a cognitive complexity of 48, current threshold is 15
+src/risk/Menu.java:1214:	CyclomaticComplexity:	The method 'maximoCambio(Player)' has a cyclomatic complexity of 27.
+src/risk/Menu.java:1214:	NPathComplexity:	The method 'maximoCambio(Player)' has an NPath complexity of 49280, current threshold is 200
+src/risk/Menu.java:1216:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:1218:	OneDeclarationPerLine:	Use one line for each declaration, it enhances code readability.
+src/risk/Menu.java:1219:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:1225:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:1227:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:1229:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:1231:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:1233:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:1281:	UnusedAssignment:	The value assigned to variable 'sum' is never used
+src/risk/Menu.java:1303:	NcssCount:	The method 'distributeArmies()' has a NCSS line count of 61.
+src/risk/Menu.java:1303:	CognitiveComplexity:	The method 'distributeArmies()' has a cognitive complexity of 43, current threshold is 15
+src/risk/Menu.java:1303:	CyclomaticComplexity:	The method 'distributeArmies()' has a cyclomatic complexity of 18.
+src/risk/Menu.java:1303:	NPathComplexity:	The method 'distributeArmies()' has an NPath complexity of 469, current threshold is 200
+src/risk/Menu.java:1304:	OneDeclarationPerLine:	Use one line for each declaration, it enhances code readability.
+src/risk/Menu.java:1316:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:1317:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:1318:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:1325:	LooseCoupling:	Avoid using implementation types like 'HashMap'; use the interface instead
+src/risk/Menu.java:1329:	PrimitiveWrapperInstantiation:	Do not use `new Float(...)`, prefer `Float.valueOf(...)`
+src/risk/Menu.java:1331:	PrimitiveWrapperInstantiation:	Do not use `new Float(...)`, prefer `Float.valueOf(...)`
+src/risk/Menu.java:1335:	SystemPrintln:	Usage of System.out/err
+src/risk/Menu.java:1336:	SystemPrintln:	Usage of System.out/err
+src/risk/Menu.java:1356:	SystemPrintln:	Usage of System.out/err
+src/risk/Menu.java:1360:	SystemPrintln:	Usage of System.out/err
+src/risk/Menu.java:1361:	ForLoopCanBeForeach:	This for loop can be replaced by a foreach loop
+src/risk/Menu.java:1362:	SystemPrintln:	Usage of System.out/err
+src/risk/Menu.java:1371:	SystemPrintln:	Usage of System.out/err
+src/risk/Menu.java:1376:	SystemPrintln:	Usage of System.out/err
+src/risk/Menu.java:1386:	SystemPrintln:	Usage of System.out/err
+src/risk/Menu.java:1390:	SystemPrintln:	Usage of System.out/err
+src/risk/Menu.java:1391:	ForLoopCanBeForeach:	This for loop can be replaced by a foreach loop
+src/risk/Menu.java:1392:	SystemPrintln:	Usage of System.out/err
+src/risk/Menu.java:1407:	SystemPrintln:	Usage of System.out/err
+src/risk/Menu.java:1411:	SystemPrintln:	Usage of System.out/err
+src/risk/Menu.java:1417:	LooseCoupling:	Avoid using implementation types like 'HashMap'; use the interface instead
+src/risk/Menu.java:1417:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:1418:	OneDeclarationPerLine:	Use one line for each declaration, it enhances code readability.
+src/risk/Menu.java:1418:	UnusedAssignment:	The initializer for variable 'countriesOcupados' is never used (overwritten on line 1421)
+src/risk/Menu.java:1418:	UnusedAssignment:	The initializer for variable 'num' is never used (overwritten on line 1434)
+src/risk/Menu.java:1418:	UnusedAssignment:	The initializer for variable 'armysDisponibles' is never used (overwritten on line 1420)
+src/risk/Menu.java:1419:	UnusedAssignment:	The initializer for variable 'factordivision' is never used (overwritten on lines 1425 and 1427)
+src/risk/Menu.java:1424:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:1424:	LiteralsFirstInComparisons:	Position literals first in String comparisons
+src/risk/Menu.java:1447:	LooseCoupling:	Avoid using implementation types like 'HashMap'; use the interface instead
+src/risk/Menu.java:1447:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:1448:	UnusedLocalVariable:	Avoid unused local variables such as 'j'.
+src/risk/Menu.java:1448:	OneDeclarationPerLine:	Use one line for each declaration, it enhances code readability.
+src/risk/Menu.java:1448:	UnusedAssignment:	The initializer for variable 'armysDisponibles' is never used (overwritten on line 1450)
+src/risk/Menu.java:1448:	UnusedLocalVariable:	Avoid unused local variables such as 'num'.
+src/risk/Menu.java:1466:	LooseCoupling:	Avoid using implementation types like 'HashMap'; use the interface instead
+src/risk/Menu.java:1466:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:1467:	OneDeclarationPerLine:	Use one line for each declaration, it enhances code readability.
+src/risk/Menu.java:1467:	UnusedAssignment:	The initializer for variable 'countriesOcupados' is never used (overwritten on line 1469)
+src/risk/Menu.java:1467:	UnusedAssignment:	The initializer for variable 'num' is never used (overwritten on line 1475)
+src/risk/Menu.java:1467:	UnusedAssignment:	The initializer for variable 'armysDisponibles' is never used (overwritten on line 1468)
+src/risk/Menu.java:1487:	LooseCoupling:	Avoid using implementation types like 'HashMap'; use the interface instead
+src/risk/Menu.java:1487:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:1488:	OneDeclarationPerLine:	Use one line for each declaration, it enhances code readability.
+src/risk/Menu.java:1488:	UnusedAssignment:	The initializer for variable 'countriesOcupados' is never used (overwritten on line 1491)
+src/risk/Menu.java:1488:	UnusedAssignment:	The initializer for variable 'num' is never used (overwritten on line 1505)
+src/risk/Menu.java:1488:	UnusedAssignment:	The initializer for variable 'armysDisponibles' is never used (overwritten on line 1490)
+src/risk/Menu.java:1489:	UnusedAssignment:	The initializer for variable 'factorocupacion' is never used (overwritten on lines 1495 and 1497)
+src/risk/Menu.java:1518:	LooseCoupling:	Avoid using implementation types like 'HashMap'; use the interface instead
+src/risk/Menu.java:1518:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:1520:	OneDeclarationPerLine:	Use one line for each declaration, it enhances code readability.
+src/risk/Menu.java:1539:	LooseCoupling:	Avoid using implementation types like 'HashMap'; use the interface instead
+src/risk/Menu.java:1539:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:1541:	OneDeclarationPerLine:	Use one line for each declaration, it enhances code readability.
+src/risk/Menu.java:1556:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Menu.java:1557:	OneDeclarationPerLine:	Use one line for each declaration, it enhances code readability.
+src/risk/NormalConsole.java:19:	RelianceOnDefaultCharset:	Specify a character set instead of relying on the default charset
+src/risk/NormalConsole.java:24:	SystemPrintln:	Usage of System.out/err
+src/risk/Player.java:18:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Player.java:19:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Player.java:34:	UnusedAssignment:	The initializer for variable 'out' is never used (overwritten on line 55)
+src/risk/Player.java:105:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Player.java:116:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Player.java:130:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Player.java:132:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/Player.java:133:	LooseCoupling:	Avoid using implementation types like 'ArrayList'; use the interface instead
+src/risk/PlayerException.java:18:	CyclomaticComplexity:	The method 'printError()' has a cyclomatic complexity of 10.
+src/risk/Printer.java:16:	UseUtilityClass:	All methods are static. Consider adding a private no-args constructor to prevent instantiation.
+src/risk/Printer.java:18:	UnusedPrivateField:	Avoid unused private fields such as 'fileName'.
+src/risk/Printer.java:23:	UnusedAssignment:	The initializer for variable 'writeBuffer' is never used (overwritten on line 25)
+src/risk/Printer.java:25:	RelianceOnDefaultCharset:	Specify a character set instead of relying on the default charset
+src/risk/Printer.java:28:	SystemPrintln:	Usage of System.out/err
+src/risk/PurpleArmy.java:25:	PrimitiveWrapperInstantiation:	Do not use `new Integer(...)`, prefer `Integer.valueOf(...)`
+src/risk/RedArmy.java:26:	PrimitiveWrapperInstantiation:	Do not use `new Integer(...)`, prefer `Integer.valueOf(...)`
+src/risk/Risk.java:12:	UseUtilityClass:	All methods are static. Consider adding a private no-args constructor to prevent instantiation.
+src/risk/Risk.java:14:	MutableStaticState:	Do not use non-final non-private static fields
+src/risk/Tile.java:14:	OneDeclarationPerLine:	Use one line for each declaration, it enhances code readability.
+src/risk/YellowArmy.java:26:	PrimitiveWrapperInstantiation:	Do not use `new Integer(...)`, prefer `Integer.valueOf(...)`
+LoosePackageCoupling	-	No packages or classes specified

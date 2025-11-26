@@ -1,0 +1,39 @@
+\begin{table}[h!]
+\centering
+\begin{tabular}{lcr}
+\toprule
+Pattern & Count \\ 
+\midrule
+LooseCoupling & 71 \\
+SystemPrintln & 59 \\
+LiteralsFirstInComparisons & 57 \\
+UnusedAssignment & 37 \\
+ExceptionAsFlowControl & 27 \\
+OneDeclarationPerLine & 20 \\
+CyclomaticComplexity & 19 \\
+CognitiveComplexity & 13 \\
+RelianceOnDefaultCharset & 9 \\
+PrimitiveWrapperInstantiation & 8 \\
+NcssCount & 7 \\
+AvoidPrintStackTrace & 7 \\
+NPathComplexity & 6 \\
+NonExhaustiveSwitch & 4 \\
+AvoidCatchingGenericException & 4 \\
+ForLoopCanBeForeach & 3 \\
+UseUtilityClass & 3 \\
+GodClass & 2 \\
+SwitchDensity & 2 \\
+UseCollectionIsEmpty & 2 \\
+UnusedLocalVariable & 2 \\
+CouplingBetweenObjects & 1 \\
+TooManyMethods & 1 \\
+TooManyFields & 1 \\
+SimplifyBooleanExpressions & 1 \\
+UnusedPrivateField & 1 \\
+MutableStaticState & 1 \\
+ & 1 \\
+\bottomrule
+\end{tabular}
+\caption{Design Patterns reported by Pattern4J.}
+\label{tab:patterns}
+\end{table}
