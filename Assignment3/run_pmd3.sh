@@ -1,7 +1,5 @@
 #! /bin/bash
 
-./pmd/bin/pmd check \
---dir ../../../assignment3-landrove-perez-gorgoroso/src \
---rulesets rulesets/java/metrics/basic.xml,rulesets/java/metrics/coupling.xml,rulesets/java/metrics/cyclomatic.xml \
---format text \
---report-file project-metrics-counts-refactored.txt
+./pmd/bin/pmd check -d ../../../assignment3-landrove-perez-gorgoroso/src -f text -R \
+  category/java/bestpractices.xml,category/java/design.xml,category/java/unusedcode.xml \
+  > report.html

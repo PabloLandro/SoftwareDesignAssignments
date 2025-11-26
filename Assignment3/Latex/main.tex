@@ -34,9 +34,8 @@
 
 The preceding assignments involved analyzing the design flaws and patterns within the \textbf{Google Guava} library. While Guava offers a valuable case study in robust software design, its extensive size and highly optimized structure make deep refactoring infeasible for the scope of this project.
 
-For this refactoring assignment, we have therefore selected a prior project: a Java implementation of the board game \textit{Risk}. This project encapsulates all the necessary game logic, utilizing \textit{standard input} for player commands such such as rolling dice, playing action cards, and moving armies.
+For this refactoring assignment, we have therefore selected one of our own prior projects: a Java implementation of the board game \textit{Risk}. This project encapsulates some of the game logic, utilizing \textit{standard input} for reading player commands such as viewing the board, assigning armies and countries to players. 
 
-\subsection{Selection}
 The primary reasons for choosing this codebase are:
 \begin{itemize}
     \item \textbf{Language Alignment}: It is written in Java, which allows us to effectively demonstrate the use of object-oriented principles, specifically \textit{inheritance} and \textit{polymorphism}, in the refactoring process.
@@ -45,16 +44,26 @@ The primary reasons for choosing this codebase are:
     \item \textbf{Refactoring Potential}: Preliminary analysis indicates numerous opportunities for applying refactoring techniques to improve code quality, maintainability, and design adherence.
 \end{itemize}
 
-\subsection{Scope}
-The existing Risk implementation is composed of $27$ Java classes, including 6 abstract classes and one interface, totaling approximately $2,300$ lines of code (LOC). This size provides sufficient complexity to necessitate significant design improvements while remaining contained enough for comprehensive refactoring within the assignment's timeframe.
+Some details of the project are:
+\begin{itemize}
+\item $37$ Java files.
+\item $6$ abstract classes.
+\item $1$ interface.
+\item Around $3{,}200$ lines of code.
+\item More than $600$ comments.
+\end{itemize}
 
-\section{Goals of Refactoring: What Aspects We Aim to Improve and Why}
+Although the project is relatively small in size, its structure reveals several design weaknesses. In particular, the very limited use of interfaces and the reliance on only a few abstract classes indicate a suboptimal application of Java's object-oriented features and inheritance mechanisms. Many responsibilities are concentrated in concrete classes, and polymorphism is used only minimally. As a result, the codebase exhibits rigid dependencies and duplicated logic, leaving significant room for improvement. This makes the project an excellent candidate for refactoring: it is compact enough to be fully understood and restructured, yet sufficiently flawed in its design to benefit greatly from a more principled use of abstraction, encapsulation, and modular decomposition.
 
-The primary motivation for the refactoring process was to improve the overall structure, maintainability, and extensibility of the application. During the initial analysis of the codebase, we identified that the \texttt{Menu} class acted as a \emph{god class}, concentrating responsibilities such as game logic, game state management, and user input processing. This high degree of coupling made the system difficult to understand, error-prone to modify, and resistant to future evolution. A major goal of the refactoring was therefore to decompose this class into smaller, more cohesive components with clearly defined responsibilities.
+\section{Goals of our refactoring}
+
+The primary motivation for the refactoring process was to improve the overall structure and maintainability of the application. During the initial analysis of the codebase, we identified that the \texttt{Menu} class acted as a \emph{god class}, concentrating responsibilities such as game logic, game state management, and user input processing. This high degree of coupling made the system difficult to understand and modify,. A major goal of the refactoring was therefore to decompose this class into smaller, more cohesive components with clearly defined responsibilities.
 
 We also made use of the PMD static analysis tool. PMD helped us identify potential design flaws, such as excessive class size, duplicated code, long switch statements, and violations of object-oriented design principles. These insights served as valuable indicators of where the system suffered from poor separation of concerns or insufficient modularity. In Table~\ref{tab:patterns} we can see a summary of the PMD output, counting each of the flaws that where found.
 
-We can see that there is a very high number of \textit{LooseCoupling} flaws. These refer to uses of implemenations of an interface instead of the interface itself, for example using \textit{ArrayList} instead of \textit{List} or \textit{HashMap} instead of \textit{Map}. This makes the code highly coupled with a specific implementation, making it harder to add new features that would require another type of \textit{List} or \textit{Map}.
+We can see that there is a very high number of \textit{LooseCoupling} violations. These refer to uses of implemenations of an interface instead of the interface itself, for example using \textit{ArrayList} instead of \textit{List} or \textit{HashMap} instead of \textit{Map}. This makes the code highly coupled with a specific implementation, making it harder to add new features that would require another type of \textit{List} or \textit{Map}.
+
+There is also a high number of violations of the \textit{LiteralsFirstInComparisons} rule. These occur when a \textit{String} variable is compared to a literal using \texttt{variable.equals("literal")}. This pattern is not null-safe, since calling \texttt{equals} on a potentially null variable may lead to a \texttt{NullPointerException}. The recommended and safer practice is to place the literal first, i.e., \texttt{"literal".equals(variable)}, which avoids such failures even when the variable is \texttt{null}. We modified all the occurrences of these violations throughout the whole codebase.
 
 \begin{table}[h!]
 \centering
@@ -63,7 +72,6 @@ We can see that there is a very high number of \textit{LooseCoupling} flaws. The
 Flaw & Count \\ 
 \midrule
 LooseCoupling & 71 \\
-SystemPrintln & 59 \\
 LiteralsFirstInComparisons & 57 \\
 UnusedAssignment & 37 \\
 ExceptionAsFlowControl & 27 \\
@@ -96,11 +104,93 @@ MutableStaticState & 1 \\
 \label{tab:patterns}
 \end{table}
 
-\section{Concrete examples of refactoring before and after}
+\section{Refactoring examples}
 
-Originally, the \texttt{Menu} class acted as a \textit{god class}, concentrating both the user interface logic and the complete game state. This design hindered maintainability and made further extensions increasingly difficult. As an initial step toward decomposing this overly-centralized structure, we separated the game state from the menu-related functionality. Although this refactor does not yet represent the final architectural solution, it provides a cleaner separation of concerns and creates a more modular foundation. This intermediate step significantly facilitates the subsequent restructuring phases, where additional responsibilities will be delegated to dedicated components.
+\subsection{Menu God Class}
 
-The \texttt{Menu} class also contained a 300+ line switch statement responsible for parsing all user input and dispatching the corresponding actions. Such a monolithic structure was hard to read, error-prone, and strongly coupled the input-handling logic to the rest of the class. To address this issue, we refactored the input system by introducing a set of Classes extending the \textit{CommandParser} abstract class, each responsible for recognizing a specific type of command. These parsers instantiate objects implementing the \textit{Command} interface, which encapsulate the actual behavior associated with each action. This new architecture improves modularity, enhances testability, and aligns the design more closely with established object-oriented principles. This represents a substantial improvement over the previous implementation.
+Originally, the \texttt{Menu} class acted as a \textit{god class}, concentrating both the user interface logic and the complete game state in Class attributes. The class consists of a loop to read user input and a $300$ line switch statement to select the code for running each command. This design hindered maintainability and made further extensions increasingly difficult. As an initial step toward decomposing this overly-centralized structure, we separated the game state from the menu-related functionality. Although this refactor does not yet represent the final architectural solution, it provides a cleaner separation of concerns and creates a more modular foundation. This intermediate step significantly facilitates the subsequent restructuring phases, where additional responsibilities will be delegated to dedicated components.
+
+To address the switch statement responsible for parsing all user input and dispatching the corresponding actions we made use of the Command and Factory patterns. We refactored the input system by introducing a \textit{CommandFactory}~\ref{code:command_factory} Class, which processes the input with a list of Classes extending a \textit{CommandParser} abstract class, each responsible for recognizing a specific type of command. These parsers instantiate objects implementing the \textit{Command} interface, which encapsulate the actual behavior associated with each action. This new architecture improves modularity, enhances testability, and aligns the design more closely with established object-oriented principles. This represents a substantial improvement over the previous implementation.
+
+
+\begin{lstlisting}[float, caption={CommandFactory Implementation}, label={code:command_factory}]
+public class CommandFactory {
+    private final List<CommandParser> parsers;
+    public CommandFactory() {
+        // Initialize the parser list by adding instances of CommandParser
+    }
+    public Command createCommand(String rawInput) throws CommandException {
+        Command out;
+        for (CommandParser parser: this.parsers) {
+            out = parser.parse(rawInput);
+            if (out != null)
+                return out;
+        }
+    }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[float, caption={CommandParser Implementation}, label={code:command_parser}]
+public abstract class CommandParser {
+    String commandName;
+    String[] arguments;
+    void splitCommand(String input) {
+        String[] parts = input.trim().split("\\s+");
+        this.commandName = parts[0];
+        this.arguments = (parts.length > 1) ? java.util.Arrays.copyOfRange(parts, 1, parts.legth) : new String[0];
+    }
+    public static void throwIncorrectCommand() throws CommandException {
+        CommandException error = new CommandException("101");
+        throw (error);
+    }
+    public abstract Command parse(String input) throws CommandException;
+}
+\end{lstlisting}
+
+\subsection{Exceptions Duplicated Code}
+
+In the original implementation, the exceptions defined within the \texttt{errors} package contained a significant amount of duplicated code and included methods with high cognitive complexity. In particular, the \texttt{printError()} method used a large \texttt{switch} statement to determine the appropriate error message for each exception, making the code difficult to maintain and extend. 
+
+As part of the refactoring, we introduced an abstract class \texttt{MyException}, which centralizes the storage of the error code and corresponding error message, and provides a single method to print the error. Each concrete exception now passes its error code to the \texttt{MyException} constructor, which retrieves the appropriate message from a \textit{map}. This approach eliminates repetitive switch statements, simplifies the exception classes, and makes it easier to modify or add new error messages in the future. Overall, the new structure reduces complexity, improves maintainability, and aligns better with object-oriented design principles. We can see a comparison between the code before and after the refactor in Snippets \ref{code:exception_before} and \ref{code:exception_after}
+
+\begin{lstlisting}[float, caption={GeoException Before}, label={code:exception_before}]
+public class GeoException extends Exception{
+    GeoException(String code){
+        super(code);
+    }
+    public void printError(){
+        String out = new String();
+        switch(super.getMessage()){
+            case "100":
+                out = "{\nerror code: 100,\ndescription: \"Color no permitido\"\n}";
+                break;
+            ...
+            case "112":
+                out = "{\nerror code: 112,\ndescription: \"Los paises no son border\"\n}";
+                break;
+            default:
+                out = super.getMessage();
+                break;
+        }
+        Risk.console.Print(out);
+    }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[float, caption={GeoException After}, label={code:exception_after}]
+public class GeoException extends MyException {
+    private static final Map<String, String> ERROR_MESSAGES = Map.ofEntries(
+        Map.entry("100", "Color no permitido"),
+		...
+        Map.entry("112", "Los paises no son border")
+    );
+    public GeoException(String code){
+        this.errorCode = code;
+        this.errorMessage = ERROR_MESSAGES.get(code);
+    }
+    
+}
+\end{lstlisting}
 
 \section{Ensuring Behavioral Consistency During Refactoring}
 
@@ -113,10 +203,29 @@ After each refactoring step, we used a custom Python script to automatically com
 This automated procedure allowed us to validate every intermediate refactoring step, ensuring that structural improvements did not compromise correctness. As a result, we maintained a high level of assurance that the final refactored version behaves exactly as the original program.
 
 
-\section{Discussion of what was harder and what was simpler to refactor}
+\section{Discussion of Refactoring Challenges}
 
+The most challenging aspect of the refactoring process was decoupling the \texttt{Menu} class into multiple components. Originally, the \texttt{Menu} class concentrated a wide range of responsibilities, including game state management, user input parsing, and command execution. Separating these concerns required careful analysis to ensure that the behavior of the system remained unchanged, as well as finding opportunities for abstraction and polymorphism.
 
+In contrast, some refactoring tasks were relatively straightforward:
 
-\section{Assesment of what else could be improved but wasn't}
+\begin{itemize}
+	\item Replacing string literals in comparisons to follow null-safe practices.
+	\item Switching from concrete types (like \texttt{ArrayList} or \texttt{HashMap}) to their corresponding interfaces (\texttt{List}, \texttt{Map}).
+\end{itemize}
+
+These changes improved code quality and maintainability with minimal risk of introducing errors.
+
+\section{Assessment of Further Improvements}
+
+Although the current refactoring significantly improved the structure of the code, there remain areas that could benefit from additional decomposition. In particular the classes:
+
+\begin{itemize}
+	\item \texttt{Game}: Holds most of the state and is highly coupled with the rest of the program.
+	\item \texttt{Map}: Contains a high amount of complex and very long methods, so it could benefit from extracting these methods.
+\end{itemize}
+
+A deep refactoring of these components would require a substantial amount of time and effort and is particularly challenging because it is difficult to make structural changes without inadvertently altering the existing functionality. As a result, this more extensive restructuring was considered beyond the scope of the current project, but it could be pursued in future work to achieve a fully modular design.
+
 
 \end{document}
